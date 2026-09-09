@@ -1,0 +1,335 @@
+<title>Frank's · Pancho Marplatense</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap');
+
+  :root{
+    --bg:#F7F4ED; --surface:#FFFFFF; --surface-2:#FBF8F1;
+    --ink:#1A1A1A; --ink-soft:#57534B; --muted:#8C877D;
+    --line:#E6E0D3; --line-strong:#D8D1C1;
+    --red:#EE3124; --red-deep:#C7261B; --cream:#F7F4ED;
+    --on-red:#FFF6EF; --band:#151312; --band-ink:#F3EFE6;
+    --shadow:0 18px 40px -24px rgba(26,26,26,.5);
+    --maxw:1180px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#141312; --surface:#1E1B19; --surface-2:#242019;
+      --ink:#F5F1E8; --ink-soft:#C6C0B4; --muted:#8E887C;
+      --line:#302B25; --line-strong:#3B352E;
+      --red:#FF4B3D; --red-deep:#EE3124; --cream:#F5F1E8;
+      --on-red:#FFF6EF; --band:#0E0D0C; --band-ink:#F3EFE6;
+      --shadow:0 20px 46px -24px rgba(0,0,0,.75);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#141312; --surface:#1E1B19; --surface-2:#242019;
+    --ink:#F5F1E8; --ink-soft:#C6C0B4; --muted:#8E887C;
+    --line:#302B25; --line-strong:#3B352E;
+    --red:#FF4B3D; --red-deep:#EE3124; --cream:#F5F1E8;
+    --on-red:#FFF6EF; --band:#0E0D0C; --band-ink:#F3EFE6;
+    --shadow:0 20px 46px -24px rgba(0,0,0,.75);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Barlow',system-ui,-apple-system,sans-serif;
+    font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.cond{font-family:'Barlow Condensed','Barlow Condensed',system-ui,sans-serif;}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--red);color:#fff}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.16em;font-weight:700;font-size:.86rem;color:var(--red)}
+
+  /* checker motif — the pancho wrapper / storefront border */
+  .checker{height:12px;width:100%;
+    background:
+      repeating-conic-gradient(var(--red) 0% 25%, transparent 0% 50%) 0 0/24px 24px;
+    background-color:var(--surface);
+    opacity:.95}
+  [data-theme="dark"] .checker,:root:not([data-theme="light"]) .checker{background-color:var(--band)}
+
+  /* ---- header ---- */
+  header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:20px;height:68px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{height:26px;width:auto}
+  .brand .since{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.66rem;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;border-left:2px solid var(--line-strong);padding-left:10px}
+  .nav .spacer{flex:1}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:.98rem;color:var(--ink-soft)}
+  .nav-links a:hover{color:var(--red)}
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-family:'Barlow Condensed',sans-serif;
+    text-transform:uppercase;letter-spacing:.05em;font-weight:800;font-size:1rem;
+    padding:12px 20px;border-radius:999px;cursor:pointer;border:2px solid transparent;transition:transform .12s ease,background .15s ease,color .15s}
+  .btn:active{transform:translateY(1px)}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-deep)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--bg)}
+  .btn-cream{background:var(--cream);color:var(--red);border-color:transparent}
+  .btn-cream:hover{background:#fff}
+  .theme{margin-left:4px;background:transparent;border:1px solid var(--line-strong);color:var(--ink-soft);
+    width:38px;height:38px;border-radius:999px;cursor:pointer;display:grid;place-items:center;font-size:1rem}
+  .theme:hover{border-color:var(--red);color:var(--red)}
+  .menu-cta{display:none}
+
+  /* ---- hero ---- */
+  .hero{padding:56px 0 40px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  .hero h1{font-weight:900;font-style:italic;text-transform:uppercase;line-height:.9;letter-spacing:-.01em;
+    font-size:clamp(3.1rem,7.2vw,6rem);margin:.35em 0 .3em;text-wrap:balance}
+  .hero h1 .hl{color:var(--red)}
+  .hero p.lead{font-size:1.18rem;color:var(--ink-soft);max-width:34ch;margin:0 0 28px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-media{position:relative}
+  .hero-media .frame{border-radius:18px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);aspect-ratio:4/5}
+  .hero-media .frame img{width:100%;height:100%;object-fit:cover}
+  .badge{position:absolute;left:-18px;bottom:26px;background:var(--red);color:#fff;transform:rotate(-4deg);
+    padding:12px 18px;border-radius:14px;box-shadow:var(--shadow);max-width:210px}
+  .badge b{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;text-transform:uppercase;font-size:1.15rem;display:block;line-height:1}
+  .badge span{font-size:.82rem;opacity:.92}
+
+  /* ticker */
+  .ticker{background:var(--red);color:var(--on-red);overflow:hidden;border-top:3px solid var(--band);border-bottom:3px solid var(--band)}
+  .ticker .track{display:flex;gap:44px;white-space:nowrap;padding:11px 0;font-family:'Barlow Condensed',sans-serif;
+    font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:1.05rem;animation:slide 26s linear infinite}
+  .ticker .track span{display:inline-flex;gap:44px}
+  .ticker b{opacity:.6;font-weight:900}
+  @keyframes slide{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.ticker .track{animation:none}}
+
+  /* ---- sections ---- */
+  section{padding:72px 0}
+  .kicker-row{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+  .kicker-row h2{font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(2rem,4.4vw,3.2rem);line-height:.95;margin:0;letter-spacing:-.01em}
+  .num{font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--red);font-size:1rem;letter-spacing:.1em}
+
+  .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;align-items:center}
+  .about-media{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);aspect-ratio:3/4}
+  .about-media img{width:100%;height:100%;object-fit:cover}
+  .about p{color:var(--ink-soft);margin:0 0 16px;max-width:60ch}
+  .about p strong{color:var(--ink)}
+  .pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .pill{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+    font-size:.9rem;padding:8px 14px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line-strong);color:var(--ink)}
+  .pill b{color:var(--red)}
+
+  /* offer cards */
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px 22px 26px;transition:transform .15s ease,border-color .15s}
+  .card:hover{transform:translateY(-4px);border-color:var(--red)}
+  .card .ic{width:44px;height:44px;border-radius:12px;background:var(--red);color:#fff;display:grid;place-items:center;font-size:1.35rem;margin-bottom:16px}
+  .card h3{margin:0 0 8px;font-weight:800;text-transform:uppercase;font-size:1.32rem;line-height:1;letter-spacing:.01em}
+  .card p{margin:0;color:var(--ink-soft);font-size:.98rem}
+
+  /* copa band */
+  .copa-band{background:var(--band);color:var(--band-ink);border-radius:22px;padding:52px 46px;position:relative;overflow:hidden}
+  .copa-band::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 130% at 100% 0,rgba(238,49,36,.32),transparent 55%);pointer-events:none}
+  .copa-band .inner{position:relative;display:grid;grid-template-columns:1.4fr auto;gap:30px;align-items:center}
+  .copa-band .eyebrow{color:var(--red)}
+  .copa-band h2{font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:.92;margin:.2em 0 .3em;color:#fff}
+  .copa-band h2 .hl{color:var(--red)}
+  .copa-band p{margin:0;color:#CFC9BE;max-width:46ch}
+  .trophy{font-size:clamp(3rem,7vw,5.5rem);line-height:1}
+  .copa-band .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+
+  /* footer */
+  footer{background:var(--band);color:var(--band-ink);padding:56px 0 30px;margin-top:8px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px;align-items:start}
+  footer .flogo{height:40px;width:auto;margin-bottom:14px}
+  footer p{color:#B9B3A7;margin:.2em 0;font-size:.98rem}
+  .foot-h{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:.85rem;color:#8C877D;margin-bottom:12px}
+  footer a.fl{display:block;color:var(--band-ink);padding:4px 0}
+  footer a.fl:hover{color:var(--red)}
+  .foot-bottom{border-top:1px solid #2A2621;margin-top:38px;padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:#7C776D;font-size:.86rem}
+  .hashtag{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;color:var(--red);letter-spacing:.02em}
+
+  :focus-visible{outline:3px solid var(--red);outline-offset:2px;border-radius:6px}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:30px}
+    .hero-media{max-width:440px}
+    .about{grid-template-columns:1fr;gap:26px}
+    .about-media{max-width:420px}
+    .cards{grid-template-columns:repeat(2,1fr)}
+    .copa-band .inner{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .nav-links{display:none}
+    .menu-cta{display:inline-flex}
+  }
+  @media(max-width:520px){
+    .cards{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+    .copa-band{padding:38px 26px}
+    section{padding:54px 0}
+  }
+</style>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Frank's inicio">
+      <img src="%%LOGO_RED%%" alt="Frank's">
+      <span class="since">Since 2024</span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="#quienes">Quiénes somos</a>
+      <a href="#ofrecen">Qué hacemos</a>
+      <a href="https://www.franquiciasfranks.com/" target="_blank" rel="noopener">Quiero la franquicia</a>
+    </nav>
+    <a class="btn btn-ghost" href="https://www.franquiciasfranks.com/" target="_blank" rel="noopener">Franquicias</a>
+    <a class="btn btn-red" href="%%COPA_URL%%">Copa 2026 →</a>
+    <button class="theme" id="themeBtn" aria-label="Cambiar tema" title="Cambiar tema">◑</button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero wrap" style="padding-top:56px">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Pancho marplatense · Gourmet</span>
+        <h1>La franquicia que <span class="hl">no es un pancho</span> más.</h1>
+        <p class="lead">Nacimos en Mar del Plata con una idea simple: elevar el pancho a categoría gourmet. Identidad propia, recetas de I+D y un sabor que se reconoce a metros.</p>
+        <div class="hero-cta">
+          <a class="btn btn-red" href="https://www.franquiciasfranks.com/" target="_blank" rel="noopener">Quiero mi franquicia →</a>
+          <a class="btn btn-ghost" href="%%COPA_URL%%">Ir a la Copa MDP 2026</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="frame"><img src="%%G1%%" alt="Cliente disfrutando un pancho Frank's en el local"></div>
+        <div class="badge"><b>#QueFrutaNoble</b><span>El ritual de vereda marplatense</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>Pancho gourmet <b>◆</b> ADN marplatense <b>◆</b> Recetas propias <b>◆</b> #QueFrutaNobleElPancho <b>◆</b> Since 2024 <b>◆</b> Pancho marplatense <b>◆</b></span>
+    <span>Pancho gourmet <b>◆</b> ADN marplatense <b>◆</b> Recetas propias <b>◆</b> #QueFrutaNobleElPancho <b>◆</b> Since 2024 <b>◆</b> Pancho marplatense <b>◆</b></span>
+  </div>
+</div>
+
+<!-- QUIÉNES / LOCAL -->
+<section id="quienes">
+  <div class="wrap">
+    <div class="kicker-row"><span class="num">01</span><h2>Quiénes somos</h2></div>
+    <div class="about" id="local">
+      <div class="about-media"><img src="%%G3%%" alt="Local de Frank's — Pancho Marplatense"></div>
+      <div>
+        <p><strong>Frank's nació en Mar del Plata</strong> con una idea simple pero potente: elevar el pancho a categoría gourmet. Desde 2024 somos la primera franquicia de panchos gourmet de Argentina.</p>
+        <p>Somos <strong>la marca que no es un pancho más</strong>: nos diferenciamos con identidad propia, investigación y desarrollo de recetas exclusivas, y una estética que se reconoce a metros. No competimos por precio, competimos por preferencia.</p>
+        <p>ADN marplatense con visión nacional, procesos claros y comunicación centralizada desde la marca. Panchos, snacks, milkshakes y dulces — el ritual de vereda de la juventud de Mar del Plata.</p>
+        <div class="pills">
+          <span class="pill"><b>1ª</b> franquicia gourmet del país</span>
+          <span class="pill">ADN <b>marplatense</b></span>
+          <span class="pill">Recetas <b>I+D</b> propias</span>
+          <span class="pill">Since <b>2024</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ HACEMOS -->
+<section id="ofrecen" style="background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kicker-row"><span class="num">02</span><h2>Qué hacemos</h2></div>
+    <div class="cards">
+      <div class="card"><div class="ic">🌭</div><h3>Pancho gourmet</h3><p>El pancho elevado: pan, salchicha y aderezos de otra categoría. El clásico, hecho bien.</p></div>
+      <div class="card"><div class="ic">📍</div><h3>ADN marplatense</h3><p>Nacido en la vereda de Mar del Plata, con visión nacional y estética propia.</p></div>
+      <div class="card"><div class="ic">🧪</div><h3>Recetas I+D</h3><p>Desarrollo interno de recetas exclusivas. Sabores que no vas a encontrar en otro lado.</p></div>
+      <a class="card" href="https://www.franquiciasfranks.com/" target="_blank" rel="noopener"><div class="ic">🤝</div><h3>Franquicia a medida</h3><p>Apertura y capacitación integral, sin experiencia previa. Procesos y redes centralizados. <b style="color:var(--red)">Conocé cómo abrir la tuya →</b></p></a>
+    </div>
+  </div>
+</section>
+
+<!-- FRANQUICIA BAND -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="copa-band" style="background:var(--red)">
+      <div class="inner">
+        <div>
+          <span class="eyebrow" style="color:#FFE9E4">Sumate a la marca</span>
+          <h2 style="color:#fff">¿Querés abrir tu <span style="color:#151312">Frank's</span>?</h2>
+          <p style="color:#FFE3DE">Frank's es la primera franquicia de panchos gourmet del país. Te acompañamos en la apertura, la capacitación y la comunicación. Conocé el modelo de negocio y sumate.</p>
+          <div class="cta">
+            <a class="btn btn-cream" href="https://www.franquiciasfranks.com/" target="_blank" rel="noopener" style="color:var(--red)">Quiero la franquicia →</a>
+          </div>
+        </div>
+        <div class="trophy" aria-hidden="true">🌭</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COPA BAND -->
+<section>
+  <div class="wrap">
+    <div class="copa-band">
+      <div class="inner">
+        <div>
+          <span class="eyebrow">Concepto de campaña · Noviembre 2026</span>
+          <h2>Se viene la <span class="hl">Copa Mar del Plata</span> 2026</h2>
+          <p>La competencia intercolegial que va a definir quién manda en Mar del Plata. Un mes, los colegios secundarios compitiendo por premios reales. Vayan preparando la campera de egresados.</p>
+          <div class="cta">
+            <a class="btn btn-red" href="%%COPA_URL%%">Entrar a la Copa →</a>
+            <a class="btn btn-cream" href="%%COPA_URL%%">Inscribir mi colegio</a>
+          </div>
+        </div>
+        <div class="trophy" aria-hidden="true">🏆</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker" aria-hidden="true"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="flogo" src="%%LOGO_CREAM%%" alt="Frank's">
+        <p>Pancho Marplatense · Panchos, snacks, milkshakes y dulces.</p>
+        <p class="hashtag">#QueFrutaNobleElPancho</p>
+      </div>
+      <div>
+        <div class="foot-h">Explorá</div>
+        <a class="fl" href="#quienes">Quiénes somos</a>
+        <a class="fl" href="#local">El local</a>
+        <a class="fl" href="%%COPA_URL%%">Copa MDP 2026</a>
+      </div>
+      <div>
+        <div class="foot-h">Seguinos</div>
+        <a class="fl" href="https://www.franquiciasfranks.com/" target="_blank" rel="noopener">Sitio de franquicias</a>
+        <a class="fl" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        <a class="fl" href="%%COPA_URL%%">Ser sede de la Copa</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Frank's · Mar del Plata, Argentina</span>
+      <span>Since 2024 · El pancho, elevado.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('themeBtn');
+    try{var s=localStorage.getItem('franks-theme'); if(s)root.setAttribute('data-theme',s);}catch(e){}
+    btn.addEventListener('click',function(){
+      var cur=root.getAttribute('data-theme');
+      var next = cur==='dark' ? 'light' : (cur==='light' ? 'dark' : (matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark'));
+      root.setAttribute('data-theme',next);
+      try{localStorage.setItem('franks-theme',next);}catch(e){}
+    });
+  })();
+</script>

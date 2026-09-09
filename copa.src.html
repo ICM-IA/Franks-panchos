@@ -1,0 +1,506 @@
+<title>Copa Mar del Plata 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap');
+
+  :root{
+    --bg:#F7F4ED; --surface:#FFFFFF; --surface-2:#FBF8F1;
+    --ink:#1A1A1A; --ink-soft:#57534B; --muted:#8C877D;
+    --line:#E6E0D3; --line-strong:#D8D1C1;
+    --red:#EE3124; --red-deep:#C7261B; --cream:#F7F4ED;
+    --on-red:#FFF6EF; --band:#151312; --band-ink:#F3EFE6;
+    --gold:#E7B43B; --silver:#AEB2B8; --bronze:#C77B48;
+    --field:#FFFFFF;
+    --shadow:0 18px 40px -24px rgba(26,26,26,.5);
+    --maxw:1180px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#141312; --surface:#1E1B19; --surface-2:#242019;
+      --ink:#F5F1E8; --ink-soft:#C6C0B4; --muted:#8E887C;
+      --line:#302B25; --line-strong:#3B352E;
+      --red:#FF4B3D; --red-deep:#EE3124; --cream:#F5F1E8;
+      --on-red:#FFF6EF; --band:#0E0D0C; --band-ink:#F3EFE6;
+      --gold:#E7B43B; --silver:#AEB2B8; --bronze:#C77B48;
+      --field:#211D1A;
+      --shadow:0 20px 46px -24px rgba(0,0,0,.75);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#141312; --surface:#1E1B19; --surface-2:#242019;
+    --ink:#F5F1E8; --ink-soft:#C6C0B4; --muted:#8E887C;
+    --line:#302B25; --line-strong:#3B352E;
+    --red:#FF4B3D; --red-deep:#EE3124; --cream:#F5F1E8;
+    --on-red:#FFF6EF; --band:#0E0D0C; --band-ink:#F3EFE6;
+    --gold:#E7B43B; --silver:#AEB2B8; --bronze:#C77B48;
+    --field:#211D1A;
+    --shadow:0 20px 46px -24px rgba(0,0,0,.75);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Barlow',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.cond{font-family:'Barlow Condensed',system-ui,sans-serif}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--red);color:#fff}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.16em;font-weight:700;font-size:.86rem;color:var(--red)}
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.05em;font-weight:800;font-size:1rem;padding:12px 20px;border-radius:999px;cursor:pointer;border:2px solid transparent;transition:transform .12s,background .15s,color .15s}
+  .btn:active{transform:translateY(1px)}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-deep)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--bg)}
+  .btn-cream{background:var(--cream);color:var(--red)}
+  .btn-cream:hover{background:#fff}
+  :focus-visible{outline:3px solid var(--red);outline-offset:2px;border-radius:6px}
+
+  .checker{height:12px;width:100%;background:repeating-conic-gradient(var(--red) 0% 25%, transparent 0% 50%) 0 0/24px 24px;background-color:var(--band)}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:18px;height:66px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand img{height:24px;width:auto}
+  .brand .tag{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;border-left:2px solid var(--line-strong);padding-left:10px}
+  .nav .spacer{flex:1}
+  .nav-links{display:flex;gap:24px;align-items:center}
+  .nav-links a{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:.96rem;color:var(--ink-soft)}
+  .nav-links a:hover{color:var(--red)}
+  .theme{background:transparent;border:1px solid var(--line-strong);color:var(--ink-soft);width:38px;height:38px;border-radius:999px;cursor:pointer;display:grid;place-items:center;font-size:1rem}
+  .theme:hover{border-color:var(--red);color:var(--red)}
+
+  /* hero */
+  .hero{background:var(--band);color:var(--band-ink);position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(90% 120% at 85% -10%,rgba(238,49,36,.42),transparent 55%);pointer-events:none}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;padding:64px 22px 70px}
+  .hero .eyebrow{color:var(--red)}
+  .hero h1{font-weight:900;font-style:italic;text-transform:uppercase;line-height:.86;letter-spacing:-.015em;font-size:clamp(3.2rem,8.4vw,6.6rem);margin:.3em 0 .28em;color:#fff;text-wrap:balance}
+  .hero h1 .hl{color:var(--red);-webkit-text-stroke:0}
+  .hero h1 .out{color:transparent;-webkit-text-stroke:2px var(--red)}
+  .hero p.lead{font-size:1.2rem;color:#D7D1C6;max-width:40ch;margin:0 0 26px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .metaline{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;color:#B9B3A7;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:.95rem}
+  .metaline b{color:#fff}
+  /* scoreboard hero card */
+  .board{background:#000;border:1px solid #2A2621;border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+  .board .bh{display:flex;justify-content:space-between;align-items:center;color:#8C877D;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:.76rem;padding:4px 6px 12px;border-bottom:1px solid #241f1b}
+  .board .live{display:inline-flex;align-items:center;gap:7px;color:#FF5445}
+  .board .dot{width:8px;height:8px;border-radius:50%;background:#FF5445;box-shadow:0 0 0 0 rgba(255,84,69,.7);animation:pulse 1.8s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 8px rgba(255,84,69,0)}100%{box-shadow:0 0 0 0 rgba(255,84,69,0)}}
+  .board ol{list-style:none;margin:6px 0 0;padding:0}
+  .board li{display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:12px;padding:11px 6px;border-bottom:1px solid #1c1815}
+  .board li:last-child{border-bottom:0}
+  .board .rk{font-family:'Barlow Condensed',sans-serif;font-weight:900;color:#6f6a61;font-size:1.05rem;text-align:center}
+  .board li.top .rk{color:var(--gold)}
+  .board .cn{color:#EDE8DE;font-weight:600}
+  .board .pt{font-family:'Barlow Condensed',sans-serif;font-weight:900;color:#fff;font-size:1.15rem;font-variant-numeric:tabular-nums}
+  .board .pt small{color:#8C877D;font-weight:700;font-size:.7rem;margin-left:3px}
+  .board .cap{color:#6f6a61;font-size:.72rem;text-align:center;padding:10px 4px 2px;font-family:'Barlow',sans-serif}
+
+  section{padding:74px 0}
+  .kicker-row{display:flex;align-items:baseline;gap:14px;margin-bottom:12px}
+  .kicker-row h2{font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(2rem,4.6vw,3.3rem);line-height:.95;margin:0;letter-spacing:-.01em}
+  .num{font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--red);font-size:1rem;letter-spacing:.1em}
+  .lead-sub{color:var(--ink-soft);max-width:62ch;margin:0 0 30px;font-size:1.08rem}
+
+  /* por qué */
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .why .c{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .why .c .ic{font-size:1.6rem;margin-bottom:12px}
+  .why .c h3{margin:0 0 8px;text-transform:uppercase;font-weight:800;font-size:1.28rem;line-height:1}
+  .why .c p{margin:0;color:var(--ink-soft);font-size:.98rem}
+
+  /* premios podio */
+  .podium{display:grid;grid-template-columns:1fr 1.14fr 1fr;gap:18px;align-items:end}
+  .prize{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px 24px;position:relative;overflow:hidden}
+  .prize.first{border-color:var(--gold);box-shadow:0 24px 50px -30px rgba(231,180,59,.7)}
+  .prize .medal{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;font-size:1.05rem;text-transform:uppercase;letter-spacing:.04em;display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;margin-bottom:16px}
+  .prize.first .medal{background:var(--gold);color:#3a2c07}
+  .prize.second .medal{background:var(--silver);color:#25282c}
+  .prize.third .medal{background:var(--bronze);color:#3a230f}
+  .prize h3{margin:.1em 0 .3em;text-transform:uppercase;font-weight:900;font-size:1.7rem;line-height:.98}
+  .prize p{margin:0;color:var(--ink-soft);font-size:.98rem}
+  .prize .em{font-size:2.4rem;position:absolute;top:20px;right:20px;opacity:.9}
+
+  /* puntos */
+  .points-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:26px;align-items:start}
+  .base{background:var(--band);color:var(--band-ink);border-radius:18px;padding:26px 26px 12px}
+  .base h3{margin:0 0 4px;color:#fff;text-transform:uppercase;font-weight:900;font-size:1.5rem}
+  .base .sh{color:#9a948a;font-size:.92rem;margin-bottom:14px}
+  .base .row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid #262019}
+  .base .row:last-child{border-bottom:0}
+  .base .row .n{color:#EDE8DE;font-weight:600}
+  .base .row .v{font-family:'Barlow Condensed',sans-serif;font-weight:900;color:var(--red);font-size:1.7rem;line-height:1;font-variant-numeric:tabular-nums}
+  .base .row .v small{color:#8C877D;font-weight:700;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;margin-left:5px}
+
+  .strats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .strat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:6px}
+  .strat .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .strat h4{margin:0;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;font-weight:800;font-size:1.16rem;line-height:1;letter-spacing:.01em}
+  .strat .pts{font-family:'Barlow Condensed',sans-serif;font-weight:900;color:var(--red);font-size:1.45rem;line-height:.9;white-space:nowrap}
+  .strat p{margin:0;color:var(--ink-soft);font-size:.9rem}
+  .strat.wide{grid-column:1/-1;background:var(--surface-2);border-style:dashed;border-color:var(--red)}
+
+  /* ranking preview */
+  .rank-note{display:inline-flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line-strong);color:var(--ink-soft);font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;padding:7px 13px;border-radius:999px;margin-bottom:20px}
+  table.rank{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  table.rank th,table.rank td{text-align:left;padding:15px 18px;border-bottom:1px solid var(--line)}
+  table.rank th{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;color:var(--muted);font-weight:800;background:var(--surface-2)}
+  table.rank tr:last-child td{border-bottom:0}
+  table.rank .pos{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;color:var(--muted);width:54px;font-variant-numeric:tabular-nums}
+  table.rank tr.p1 .pos{color:var(--gold)} table.rank tr.p2 .pos{color:var(--silver)} table.rank tr.p3 .pos{color:var(--bronze)}
+  table.rank .col{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.14rem;text-transform:uppercase;letter-spacing:.01em}
+  table.rank .div{color:var(--muted);font-size:.92rem}
+  table.rank .pts{text-align:right;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;font-variant-numeric:tabular-nums}
+  table.rank tr.p1{background:linear-gradient(90deg,color-mix(in srgb,var(--gold) 12%,transparent),transparent)}
+
+  /* form */
+  .signup{background:var(--band);color:var(--band-ink);border-radius:22px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
+  .signup .side{padding:44px 40px;position:relative}
+  .signup .side.info{background:linear-gradient(160deg,#1c1815,#151312)}
+  .signup .side.info::after{content:"";position:absolute;inset:0;background:radial-gradient(90% 80% at 10% 110%,rgba(238,49,36,.34),transparent 55%);pointer-events:none}
+  .signup .info .rel{position:relative}
+  .signup h2{margin:.1em 0 .3em;color:#fff;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:.92}
+  .signup h2 .hl{color:var(--red)}
+  .signup .info p{color:#C9C3B8;max-width:34ch}
+  .signup .info ul{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:12px}
+  .signup .info li{display:flex;gap:11px;color:#E4DFD5;font-size:.98rem}
+  .signup .info li b{color:var(--red);font-family:'Barlow Condensed',sans-serif;font-weight:900}
+  .signup form{padding:40px;background:var(--surface);color:var(--ink)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-size:.82rem;color:var(--ink-soft);margin-bottom:6px}
+  .field input,.field select{width:100%;padding:13px 14px;border-radius:11px;border:1.5px solid var(--line-strong);background:var(--field);color:var(--ink);font-family:'Barlow',sans-serif;font-size:1rem}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(238,49,36,.16)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  form .btn-red{width:100%;justify-content:center;margin-top:8px;font-size:1.1rem;padding:15px}
+  .fineprint{color:var(--muted);font-size:.82rem;margin-top:14px;text-align:center}
+  .ok{display:none;text-align:center;padding:30px 10px}
+  .ok .big{font-size:2.6rem}
+  .ok h3{color:var(--red);text-transform:uppercase;font-weight:900;font-size:1.8rem;margin:.3em 0}
+  .ok p{color:var(--ink-soft)}
+  .demo-tag{position:absolute;top:16px;right:16px;background:rgba(238,49,36,.16);color:var(--red);font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;padding:5px 11px;border-radius:999px;border:1px solid rgba(238,49,36,.4)}
+
+  footer{background:var(--band);color:var(--band-ink);padding:52px 0 28px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px;align-items:start}
+  footer .flogo{height:36px;margin-bottom:12px}
+  footer p{color:#B9B3A7;margin:.2em 0;font-size:.96rem}
+  .foot-h{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.12em;font-weight:800;font-size:.82rem;color:#8C877D;margin-bottom:10px}
+  footer a.fl{display:block;color:var(--band-ink);padding:4px 0}
+  footer a.fl:hover{color:var(--red)}
+  .foot-bottom{border-top:1px solid #2A2621;margin-top:34px;padding-top:18px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#7C776D;font-size:.85rem}
+  .hashtag{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;color:var(--red)}
+
+  @media(max-width:920px){
+    .hero .wrap{grid-template-columns:1fr;gap:34px;padding:48px 22px 56px}
+    .why{grid-template-columns:1fr}
+    .podium{grid-template-columns:1fr;align-items:stretch}
+    .prize.first{order:-1}
+    .points-grid{grid-template-columns:1fr}
+    .signup{grid-template-columns:1fr}
+    .nav-links{display:none}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:520px){
+    .strats{grid-template-columns:1fr}
+    .two{grid-template-columns:1fr}
+    table.rank .div{display:none}
+    section{padding:56px 0}
+    .foot-grid{grid-template-columns:1fr}
+  }
+</style>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="%%INST_URL%%" aria-label="Frank's">
+      <img src="%%LOGO_RED%%" alt="Frank's">
+      <span class="tag">Copa MDP 2026</span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="#premios">Premios</a>
+      <a href="#puntos">Puntos</a>
+      <a href="#ranking">Ranking</a>
+      <a href="%%INST_URL%%">← Frank's</a>
+    </nav>
+    <a class="btn btn-red" href="#inscripcion">Inscribir colegio</a>
+    <button class="theme" id="themeBtn" aria-label="Cambiar tema" title="Cambiar tema">◑</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Competencia intercolegial · Mar del Plata</span>
+      <h1>Copa <span class="hl">Mar del Plata</span> <span class="out">2026</span></h1>
+      <p class="lead">La competencia que va a definir quién manda en Mar del Plata. Un mes, los 6tos de los colegios sumando puntos en el local y en redes. Vayan preparando la campera de egresados.</p>
+      <div class="hero-cta">
+        <a class="btn btn-red" href="#inscripcion">Inscribir mi colegio →</a>
+        <a class="btn btn-cream" href="#puntos">Cómo se suman puntos</a>
+      </div>
+      <div class="metaline">
+        <span><b>1 mes</b> de duración</span>
+        <span>Arranca en la <b>previa del Día del Estudiante</b></span>
+        <span><b>3</b> premios reales</span>
+      </div>
+    </div>
+    <div class="board" aria-label="Ranking de colegios en vivo">
+      <div class="bh"><span>Ranking de colegios</span><span class="live"><span class="dot"></span>En vivo</span></div>
+      <ol id="boardList">
+        <li><span class="rk">–</span><span class="cn">Cargando ranking…</span><span class="pt">—</span></li>
+      </ol>
+      <div class="cap">El ranking se actualiza en vivo durante la Copa.</div>
+    </div>
+  </div>
+</section>
+<div class="checker" aria-hidden="true"></div>
+
+<!-- DE QUÉ SE TRATA -->
+<section id="dequese">
+  <div class="wrap">
+    <div class="kicker-row"><span class="num">01</span><h2>De qué se trata</h2></div>
+    <p class="lead-sub">Una competencia intercolegial de un mes entre los últimos años de secundaria de los colegios de Mar del Plata. Suman puntos consumiendo en el local y con acciones en redes. El curso que más puntos junta, gana. Simple: convertimos a Frank's en la sede obligatoria de la previa del verano.</p>
+    <div class="why">
+      <div class="c"><div class="ic">📈</div><h3>Más ticket, más volumen</h3><p>El local se vuelve la sede de consumo de miles de estudiantes durante un mes entero.</p></div>
+      <div class="c"><div class="ic">🔁</div><h3>Efecto multiplicador</h3><p>No consume solo el de 6to. Para ganar traen familia, profes, preceptores y otros años.</p></div>
+      <div class="c"><div class="ic">🔥</div><h3>Comunidad joven</h3><p>Frank's queda como la marca del "ritual de vereda" de la juventud marplatense.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIOS -->
+<section id="premios" style="background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kicker-row"><span class="num">02</span><h2>Los premios</h2></div>
+    <p class="lead-sub">Tres premios para el curso ganador. Reales, para vivirlos entre todos.</p>
+    <div class="podium">
+      <div class="prize second">
+        <span class="medal">🥈 2º Premio</span>
+        <h3>Pancho Party</h3>
+        <p>Varias cajas de "Pancho Party" para cubrir a todo el curso. El festejo asegurado.</p>
+        <span class="em" aria-hidden="true">🎉</span>
+      </div>
+      <div class="prize first">
+        <span class="medal">🥇 1º Premio</span>
+        <h3>La Barra Móvil</h3>
+        <p>Servicio de barra móvil + insumos (panchos y aderezos) para un evento particular del curso. Frank's en la puerta de tu fiesta.</p>
+        <span class="em" aria-hidden="true">🚚</span>
+      </div>
+      <div class="prize third">
+        <span class="medal">🥉 3º Premio</span>
+        <h3>20% OFF Noviembre</h3>
+        <p>Voucher de descuento institucional del 20% para todos los alumnos del curso durante noviembre.</p>
+        <span class="em" aria-hidden="true">🎟️</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUNTOS -->
+<section id="puntos">
+  <div class="wrap">
+    <div class="kicker-row"><span class="num">03</span><h2>Cómo sumar puntos</h2></div>
+    <p class="lead-sub">Cada consumo acreditado a tu colegio suma. Y hay jugadas extra para acelerar el marcador.</p>
+    <div class="points-grid">
+      <div class="base">
+        <h3>Consumo base</h3>
+        <div class="sh">Lo que suma cada pedido acreditado al colegio.</div>
+        <div class="row"><span class="n">Pancho simple</span><span class="v">10<small>pts</small></span></div>
+        <div class="row"><span class="n">Promo</span><span class="v">15<small>pts</small></span></div>
+        <div class="row"><span class="n">Pancho Party</span><span class="v">50<small>pts</small></span></div>
+      </div>
+      <div class="strats">
+        <div class="strat"><div class="top"><h4>El ticket del profe</h4><span class="pts">+30</span></div><p>Un profe o preceptor consume y acredita al colegio.</p></div>
+        <div class="strat"><div class="top"><h4>Hinchada secundaria</h4><span class="pts">+10</span></div><p>Alumnos de 1º a 5º que consumen y asignan su ticket al 6to.</p></div>
+        <div class="strat"><div class="top"><h4>Foto grupal</h4><span class="pts">+30</span></div><p>Mín. 8 alumnos en el local, foto en stories etiquetando a la marca.</p></div>
+        <div class="strat"><div class="top"><h4>Happy Hour de puntos</h4><span class="pts">2x·3x</span></div><p>Puntaje doble o triple en los días/horarios de menor movimiento.</p></div>
+        <div class="strat wide"><div class="top"><h4>⚡ El Clásico</h4><span class="pts">+ extra</span></div><p>Dos colegios rivales por semana en un duelo de 48 hs. El que más recauda se lleva puntos extra. (ej. Day School vs. Northern Hills · Don Bosco vs. Peralta Ramos).</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RANKING -->
+<section id="ranking" style="background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kicker-row"><span class="num">04</span><h2>Ranking en vivo</h2></div>
+    <span class="rank-note"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block"></span> Actualizado en vivo durante la competencia</span>
+    <table class="rank">
+      <thead><tr><th>#</th><th>Colegio</th><th style="text-align:right">Puntos</th></tr></thead>
+      <tbody id="rankBody">
+        <tr><td class="pos">–</td><td><div class="col">Cargando ranking…</div></td><td class="pts">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- INSCRIPCIÓN -->
+<section id="inscripcion">
+  <div class="wrap">
+    <div class="signup">
+      <div class="side info">
+        <div class="rel">
+          <span class="eyebrow">Inscripción del delegado</span>
+          <h2>Anotá a tu <span class="hl">colegio</span> en la Copa</h2>
+          <p>El delegado del curso inscribe al colegio. Después empiezan a sumar puntos desde el primer pancho.</p>
+          <ul>
+            <li><b>1.</b> Anotás tu curso acá abajo.</li>
+            <li><b>2.</b> Te confirmamos y te damos el código del colegio.</li>
+            <li><b>3.</b> Cada consumo con ese código suma al marcador.</li>
+          </ul>
+        </div>
+      </div>
+      <form id="form" novalidate>
+        <div class="field">
+          <label for="colegio">Colegio</label>
+          <input id="colegio" name="colegio" type="text" placeholder="Ej. Don Bosco" required>
+        </div>
+        <div class="two">
+          <div class="field">
+            <label for="division">División / Año</label>
+            <input id="division" name="division" type="text" placeholder="Ej. 6º A" required>
+          </div>
+          <div class="field">
+            <label for="cel">Celular</label>
+            <input id="cel" name="cel" type="tel" placeholder="223 555 5555" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="mail">Mail del delegado</label>
+          <input id="mail" name="mail" type="email" placeholder="delegado@colegio.com" required>
+        </div>
+        <button class="btn btn-red" type="submit">Inscribir mi colegio</button>
+        <div class="fineprint">Al inscribirte aceptás las bases y condiciones de la Copa Mar del Plata 2026.</div>
+      </form>
+      <div class="ok" id="ok" style="grid-column:1/-1">
+        <div class="big" aria-hidden="true">🏆</div>
+        <h3>¡Colegio anotado!</h3>
+        <p id="okmsg">Ya casi. Te vamos a contactar para confirmar la inscripción.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker" aria-hidden="true"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="flogo" src="%%LOGO_CREAM%%" alt="Frank's">
+        <p>Copa Mar del Plata 2026 · Competencia intercolegial.</p>
+        <p class="hashtag">#QueFrutaNobleElPancho</p>
+      </div>
+      <div>
+        <div class="foot-h">La Copa</div>
+        <a class="fl" href="#premios">Premios</a>
+        <a class="fl" href="#puntos">Cómo sumar puntos</a>
+        <a class="fl" href="#ranking">Ranking</a>
+        <a class="fl" href="#inscripcion">Inscribir colegio</a>
+      </div>
+      <div>
+        <div class="foot-h">Frank's</div>
+        <a class="fl" href="%%INST_URL%%">Volver al inicio</a>
+        <a class="fl" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        <a class="fl" href="https://www.franquiciasfranks.com/" target="_blank" rel="noopener">Franquicias</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Frank's · Mar del Plata, Argentina</span>
+      <span>Copa Mar del Plata · Edición 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script>
+  (function(){
+    /* ---- tema ---- */
+    var root=document.documentElement, btn=document.getElementById('themeBtn');
+    try{var s=localStorage.getItem('franks-theme'); if(s)root.setAttribute('data-theme',s);}catch(e){}
+    btn.addEventListener('click',function(){
+      var cur=root.getAttribute('data-theme');
+      var next=cur==='dark'?'light':(cur==='light'?'dark':(matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark'));
+      root.setAttribute('data-theme',next);
+      try{localStorage.setItem('franks-theme',next);}catch(e){}
+    });
+
+    /* ---- Supabase ---- */
+    var cfg=window.FRANKS_CONFIG||{};
+    var sb=null;
+    if(window.supabase && cfg.SUPABASE_URL && cfg.SUPABASE_URL.indexOf('http')===0){
+      sb=window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
+    }
+
+    var fmt=function(n){return (n||0).toLocaleString('es-AR');};
+
+    /* ---- ranking en vivo ---- */
+    function pintarRanking(rows){
+      var board=document.getElementById('boardList');
+      var body=document.getElementById('rankBody');
+      if(!rows || !rows.length){
+        if(board) board.innerHTML='<li><span class="rk">–</span><span class="cn">Todavía no hay colegios anotados</span><span class="pt">—</span></li>';
+        if(body) body.innerHTML='<tr><td class="pos">–</td><td><div class="col">Todavía no hay colegios anotados</div><div class="div">¡Anotá el tuyo abajo y arrancá a sumar!</div></td><td class="pts">0</td></tr>';
+        return;
+      }
+      if(board){
+        board.innerHTML=rows.slice(0,5).map(function(r,i){
+          return '<li'+(i===0?' class="top"':'')+'><span class="rk">'+(i+1)+'</span><span class="cn">'+esc(r.nombre)+(r.division?' · '+esc(r.division):'')+'</span><span class="pt">'+fmt(r.puntos)+'<small>pts</small></span></li>';
+        }).join('');
+      }
+      if(body){
+        body.innerHTML=rows.map(function(r,i){
+          var cls=i===0?'p1':(i===1?'p2':(i===2?'p3':''));
+          return '<tr'+(cls?' class="'+cls+'"':'')+'><td class="pos">'+(i+1)+'</td><td><div class="col">'+esc(r.nombre)+'</div><div class="div">'+esc(r.division||'')+'</div></td><td class="pts">'+fmt(r.puntos)+'</td></tr>';
+        }).join('');
+      }
+    }
+    function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+    function cargarRanking(){
+      if(!sb) return;
+      sb.from('ranking').select('nombre,division,puntos').order('puntos',{ascending:false}).then(function(res){
+        if(res.error){console.warn('ranking',res.error);return;}
+        pintarRanking(res.data||[]);
+      });
+    }
+    cargarRanking();
+    if(sb) setInterval(cargarRanking, 20000); // refresca cada 20s
+
+    /* ---- inscripción real ---- */
+    var form=document.getElementById('form'), ok=document.getElementById('ok');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(!form.checkValidity()){form.reportValidity();return;}
+      var col=document.getElementById('colegio').value.trim();
+      var data={
+        nombre: col,
+        division: document.getElementById('division').value.trim(),
+        celular: document.getElementById('cel').value.trim(),
+        email: document.getElementById('mail').value.trim()
+      };
+      var submitBtn=form.querySelector('button[type=submit]');
+      submitBtn.disabled=true; submitBtn.textContent='Anotando…';
+
+      function exito(){
+        document.getElementById('okmsg').textContent='¡'+col+' quedó anotado en la Copa! Ya aparece en el ranking. Cada consumo acreditado va a sumar puntos.';
+        form.style.display='none'; ok.style.display='block';
+        cargarRanking();
+      }
+      function error(msg){
+        submitBtn.disabled=false; submitBtn.textContent='Inscribir mi colegio';
+        alert(msg||'No pudimos anotar el colegio. Probá de nuevo en un ratito.');
+      }
+
+      if(!sb){ // sin conexión configurada todavía
+        exito(); return;
+      }
+      sb.from('colegios').insert(data).then(function(res){
+        if(res.error){console.warn('insert',res.error);error();return;}
+        exito();
+      });
+    });
+  })();
+</script>
