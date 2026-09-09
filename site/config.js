@@ -6,6 +6,6 @@
 //  Después de editar, guardá y volvé a subir (git push) — Vercel publica solo.
 // =====================================================================
 window.FRANKS_CONFIG = {
-  SUPABASE_URL: "PEGA_TU_PROJECT_URL_ACA",          // ej: https://abcdefgh.supabase.co
-  SUPABASE_ANON_KEY: "PEGA_TU_ANON_PUBLIC_KEY_ACA"  // la clave larga "anon / public"
+  SUPABASE_URL: "https://ejzigpwffwfxtohofoyv.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_LcS37I2dENTJ8zMlLo9B7g_RJf30c82"  // publishable (pública)
 };
