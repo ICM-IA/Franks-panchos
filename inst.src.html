@@ -113,6 +113,16 @@
   .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;align-items:center}
   .about-media{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);aspect-ratio:3/4}
   .about-media img{width:100%;height:100%;object-fit:cover}
+  /* carrusel del local */
+  .carousel{position:relative;isolation:isolate}
+  .carousel .slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;z-index:0}
+  .carousel .slide.is-active{opacity:1;z-index:1}
+  .carousel .slide img{width:100%;height:100%;object-fit:cover;display:block}
+  .carousel .dots{position:absolute;left:0;right:0;bottom:12px;z-index:3;display:flex;gap:8px;justify-content:center}
+  .carousel .dots button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:background .25s,transform .25s;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+  .carousel .dots button.is-active{background:var(--red);transform:scale(1.25)}
+  .carousel::after{content:"";position:absolute;left:0;right:0;bottom:0;height:38%;z-index:2;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.32),transparent)}
+  @media (prefers-reduced-motion: reduce){.carousel .slide{transition:none}}
   .about p{color:var(--ink-soft);margin:0 0 16px;max-width:60ch}
   .about p strong{color:var(--ink)}
   .pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
@@ -223,7 +233,13 @@
   <div class="wrap">
     <div class="kicker-row"><span class="num">01</span><h2>Quiénes somos</h2></div>
     <div class="about" id="local">
-      <div class="about-media"><img src="%%G3%%" alt="Local de Frank's — Pancho Marplatense"></div>
+      <div class="about-media carousel" id="localCarousel" aria-label="Fotos del local Frank's" aria-roledescription="carrusel">
+        <div class="slide is-active"><img src="%%G3%%" alt="Frente del local Frank's — Pancho Marplatense" loading="lazy"></div>
+        <div class="slide"><img src="%%G1%%" alt="Cliente disfrutando un pancho Frank's" loading="lazy"></div>
+        <div class="slide"><img src="%%G2%%" alt="Interior del local Frank's" loading="lazy"></div>
+        <div class="slide"><img src="%%G5%%" alt="Detalle de un pancho gourmet Frank's" loading="lazy"></div>
+        <div class="dots" role="tablist"></div>
+      </div>
       <div>
         <p><strong>Frank's nació en Mar del Plata</strong> con una idea simple pero potente: elevar el pancho a categoría gourmet. Desde 2024 somos la primera franquicia de panchos gourmet de Argentina.</p>
         <p>Somos <strong>la marca que no es un pancho más</strong>: nos diferenciamos con identidad propia, investigación y desarrollo de recetas exclusivas, y una estética que se reconoce a metros. No competimos por precio, competimos por preferencia.</p>
@@ -331,5 +347,35 @@
       root.setAttribute('data-theme',next);
       try{localStorage.setItem('franks-theme',next);}catch(e){}
     });
+  })();
+
+  /* Carrusel del local — rota solo */
+  (function(){
+    var c=document.getElementById('localCarousel'); if(!c) return;
+    var slides=[].slice.call(c.querySelectorAll('.slide'));
+    var dotsBox=c.querySelector('.dots');
+    if(slides.length<2){ return; }
+    var i=0, timer=null, DELAY=4200;
+    var dots=slides.map(function(_,n){
+      var b=document.createElement('button');
+      b.type='button'; b.setAttribute('role','tab');
+      b.setAttribute('aria-label','Foto '+(n+1));
+      b.addEventListener('click',function(){ go(n); reset(); });
+      dotsBox.appendChild(b); return b;
+    });
+    function go(n){
+      slides[i].classList.remove('is-active'); dots[i].classList.remove('is-active');
+      i=(n+slides.length)%slides.length;
+      slides[i].classList.add('is-active'); dots[i].classList.add('is-active');
+    }
+    function next(){ go(i+1); }
+    function start(){ if(!timer) timer=setInterval(next,DELAY); }
+    function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+    function reset(){ stop(); start(); }
+    dots[0].classList.add('is-active');
+    c.addEventListener('mouseenter',stop);
+    c.addEventListener('mouseleave',start);
+    document.addEventListener('visibilitychange',function(){ document.hidden?stop():start(); });
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ start(); }
   })();
 </script>
