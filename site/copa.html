@@ -359,17 +359,23 @@
         </div>
         <div class="two">
           <div class="field">
+            <label for="capitan">Nombre del capitán</label>
+            <input id="capitan" name="capitan" type="text" placeholder="Ej. Juan Pérez" required>
+          </div>
+          <div class="field">
             <label for="division">División / Año</label>
             <input id="division" name="division" type="text" placeholder="Ej. 6º A" required>
           </div>
+        </div>
+        <div class="two">
           <div class="field">
             <label for="cel">Celular</label>
             <input id="cel" name="cel" type="tel" placeholder="223 555 5555" required>
           </div>
-        </div>
-        <div class="field">
-          <label for="mail">Mail del capitán</label>
-          <input id="mail" name="mail" type="email" placeholder="capitan@colegio.com" required>
+          <div class="field">
+            <label for="mail">Mail del capitán</label>
+            <input id="mail" name="mail" type="email" placeholder="capitan@colegio.com" required>
+          </div>
         </div>
         <button class="btn btn-red" type="submit">Inscribir mi colegio</button>
         <div class="fineprint">Al inscribirte aceptás las bases y condiciones de la Copa Mar del Plata 2026.</div>
@@ -478,6 +484,7 @@
       var col=document.getElementById('colegio').value.trim();
       var data={
         nombre: col,
+        capitan: document.getElementById('capitan').value.trim(),
         division: document.getElementById('division').value.trim(),
         celular: document.getElementById('cel').value.trim(),
         email: document.getElementById('mail').value.trim()
