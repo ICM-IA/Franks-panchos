@@ -24,7 +24,16 @@ function build(srcFile, outFile, extra) {
   console.log('built', outFile, (fs.statSync(dest).size / 1024).toFixed(0) + 'kb');
 }
 
-build('inst.src.html', 'index.html', { COPA_URL });
+// Copia de medios pesados (video del hero) como archivos reales, no base64
+const MEDIA = path.join(dir, 'assets-media');
+let HERO_VIDEO = '';
+if (fs.existsSync(path.join(MEDIA, 'hero.mp4'))) {
+  fs.copyFileSync(path.join(MEDIA, 'hero.mp4'), path.join(OUT, 'hero.mp4'));
+  HERO_VIDEO = 'hero.mp4';
+  console.log('copied hero.mp4', (fs.statSync(path.join(OUT, 'hero.mp4')).size / 1024 / 1024).toFixed(2) + 'MB');
+}
+
+build('inst.src.html', 'index.html', { COPA_URL, HERO_VIDEO });
 build('copa.src.html', 'copa.html',  { INST_URL });
 build('admin.src.html', 'admin.html', { INST_URL, COPA_URL });
 
