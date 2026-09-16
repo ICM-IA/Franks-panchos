@@ -179,6 +179,7 @@
   .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   form .btn-red{width:100%;justify-content:center;margin-top:8px;font-size:1.1rem;padding:15px}
   .fineprint{color:var(--muted);font-size:.82rem;margin-top:14px;text-align:center}
+  .fineprint a{color:var(--red);text-decoration:underline;text-underline-offset:2px;font-weight:600}
   .ok{display:none;text-align:center;padding:30px 10px}
   .ok .big{font-size:2.6rem}
   .ok h3{color:var(--red);text-transform:uppercase;font-weight:900;font-size:1.8rem;margin:.3em 0}
@@ -380,7 +381,7 @@
           </div>
         </div>
         <button class="btn btn-red" type="submit">Inscribir mi colegio</button>
-        <div class="fineprint">Al inscribirte aceptás las bases y condiciones de la Copa Mar del Plata 2026.</div>
+        <div class="fineprint">Al inscribirte aceptás las <a href="/bases">bases y condiciones</a> de la Copa Mar del Plata 2026.</div>
       </form>
       <div class="ok" id="ok" style="grid-column:1/-1">
         <div class="big" aria-hidden="true">🏆</div>
@@ -407,6 +408,7 @@
         <a class="fl" href="#puntos">Cómo sumar puntos</a>
         <a class="fl" href="#ranking">Ranking</a>
         <a class="fl" href="#inscripcion">Inscribir colegio</a>
+        <a class="fl" href="/bases">Bases y condiciones</a>
       </div>
       <div>
         <div class="foot-h">Frank's</div>

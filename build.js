@@ -35,6 +35,7 @@ if (fs.existsSync(path.join(MEDIA, 'hero.mp4'))) {
 
 build('inst.src.html', 'index.html', { COPA_URL, HERO_VIDEO });
 build('copa.src.html', 'copa.html',  { INST_URL });
+build('bases.src.html', 'bases.html', { INST_URL, COPA_URL });
 build('admin.src.html', 'admin.html', { INST_URL, COPA_URL });
 
 // config.js se copia tal cual (el cliente lo edita con sus datos de Supabase)

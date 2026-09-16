@@ -1,0 +1,256 @@
+<title>Bases y Condiciones · Copa Mar del Plata 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap');
+
+  :root{
+    --bg:#F7F4ED; --surface:#FFFFFF; --surface-2:#FBF8F1;
+    --ink:#1A1A1A; --ink-soft:#57534B; --muted:#8C877D;
+    --line:#E6E0D3; --line-strong:#D8D1C1;
+    --red:#EE3124; --red-deep:#C7261B; --cream:#F7F4ED;
+    --on-red:#FFF6EF; --band:#151312; --band-ink:#F3EFE6;
+    --shadow:0 18px 40px -24px rgba(26,26,26,.5);
+    --maxw:860px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#141312; --surface:#1E1B19; --surface-2:#242019;
+      --ink:#F5F1E8; --ink-soft:#C6C0B4; --muted:#8E887C;
+      --line:#302B25; --line-strong:#3B352E;
+      --red:#FF4B3D; --red-deep:#EE3124; --cream:#F5F1E8;
+      --on-red:#FFF6EF; --band:#0E0D0C; --band-ink:#F3EFE6;
+      --shadow:0 20px 46px -24px rgba(0,0,0,.75);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#141312; --surface:#1E1B19; --surface-2:#242019;
+    --ink:#F5F1E8; --ink-soft:#C6C0B4; --muted:#8E887C;
+    --line:#302B25; --line-strong:#3B352E;
+    --red:#FF4B3D; --red-deep:#EE3124; --cream:#F5F1E8;
+    --on-red:#FFF6EF; --band:#0E0D0C; --band-ink:#F3EFE6;
+    --shadow:0 20px 46px -24px rgba(0,0,0,.75);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Barlow',system-ui,sans-serif;font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Barlow Condensed',system-ui,sans-serif}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--red);color:#fff}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.16em;font-weight:700;font-size:.86rem;color:var(--red)}
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.05em;font-weight:800;font-size:1rem;padding:12px 20px;border-radius:999px;cursor:pointer;border:2px solid transparent;transition:transform .12s,background .15s,color .15s}
+  .btn:active{transform:translateY(1px)}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-deep)}
+  :focus-visible{outline:3px solid var(--red);outline-offset:2px;border-radius:6px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:18px;height:66px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand img{height:24px;width:auto}
+  .brand .tag{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;border-left:2px solid var(--line-strong);padding-left:10px}
+  .nav .spacer{flex:1}
+  .nav-links{display:flex;gap:24px;align-items:center}
+  .nav-links a{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:.96rem;color:var(--ink-soft)}
+  .nav-links a:hover{color:var(--red)}
+  .theme{background:transparent;border:1px solid var(--line-strong);color:var(--ink-soft);width:38px;height:38px;border-radius:999px;cursor:pointer;display:grid;place-items:center;font-size:1rem}
+
+  .checker{height:12px;width:100%;background:repeating-conic-gradient(var(--red) 0% 25%, transparent 0% 50%) 0 0/24px 24px;background-color:var(--band)}
+
+  /* hero */
+  .top-hero{padding:52px 0 30px}
+  .top-hero h1{margin:.15em 0 0;font-weight:900;font-style:italic;text-transform:uppercase;line-height:.92;font-size:clamp(2rem,6vw,3rem)}
+  .top-hero h1 .hl{color:var(--red)}
+  .top-hero .sub{margin:14px 0 0;color:var(--ink-soft);font-size:.98rem}
+
+  main{padding:8px 0 30px}
+  .art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 26px;margin:16px 0;box-shadow:var(--shadow)}
+  .art h2{text-transform:uppercase;font-weight:900;font-size:1.3rem;margin:0 0 8px;letter-spacing:.01em;display:flex;gap:12px;align-items:baseline}
+  .art h2 .n{color:var(--red);font-size:1.1rem;min-width:1.6em}
+  .art h3{text-transform:uppercase;font-weight:800;font-size:1.02rem;margin:16px 0 4px}
+  .art p{margin:.5em 0}
+  .art ul{margin:.5em 0;padding-left:1.2em}
+  .art li{margin:.34em 0}
+  .ph{background:rgba(238,49,36,.13);color:var(--red);font-weight:600;padding:.04em .34em;border-radius:.2em;font-size:.94em}
+
+  .note{background:rgba(238,49,36,.1);border:1px solid rgba(238,49,36,.34);border-left:4px solid var(--red);border-radius:12px;padding:14px 18px;margin:20px 0 4px;font-size:.94rem;color:var(--ink-soft)}
+  .note b{color:var(--ink)}
+
+  table.pts{width:100%;border-collapse:collapse;margin:10px 0 2px;font-size:.95rem}
+  table.pts th,table.pts td{text-align:left;padding:9px 4px;border-bottom:1px solid var(--line)}
+  table.pts th{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;font-size:.82rem;letter-spacing:.06em;color:var(--muted)}
+  table.pts td:last-child,table.pts th:last-child{text-align:right;white-space:nowrap;font-family:'Barlow Condensed',sans-serif;font-weight:900;color:var(--red);font-size:1.05rem}
+
+  footer{background:var(--band);color:var(--band-ink);padding:44px 0 26px;margin-top:24px}
+  .foot-in{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+  footer .flogo{height:34px}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap}
+  .foot-links a{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:.92rem;color:#C9C3B8}
+  .foot-links a:hover{color:#fff}
+  .foot-bottom{border-top:1px solid #2A2621;margin-top:26px;padding-top:16px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#7C776D;font-size:.85rem}
+
+  @media (max-width:640px){
+    .nav-links{display:none}
+    .art{padding:20px 18px}
+  }
+</style>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="%%INST_URL%%" aria-label="Frank's">
+      <img src="%%LOGO_RED%%" alt="Frank's">
+      <span class="tag">Copa MDP 2026</span>
+    </a>
+    <div class="spacer"></div>
+    <nav class="nav-links">
+      <a href="%%COPA_URL%%#premios">Premios</a>
+      <a href="%%COPA_URL%%#puntos">Puntos</a>
+      <a href="%%COPA_URL%%#inscripcion">Inscribir colegio</a>
+      <a href="%%COPA_URL%%">← Volver a la Copa</a>
+    </nav>
+    <a class="btn btn-red" href="%%COPA_URL%%#inscripcion">Inscribir colegio</a>
+    <button class="theme" id="themeBtn" aria-label="Cambiar tema" title="Cambiar tema">◑</button>
+  </div>
+</header>
+
+<div class="checker" aria-hidden="true"></div>
+
+<section class="top-hero">
+  <div class="wrap">
+    <span class="eyebrow">Bases y condiciones</span>
+    <h1>Copa <span class="hl">Mar del Plata</span> 2026</h1>
+    <p class="sub">Promoción intercolegial · Mar del Plata, Provincia de Buenos Aires, Argentina.</p>
+    <div class="note"><b>Borrador para revisión.</b> Los campos resaltados en <span class="ph">rojo</span> deben completarse o confirmarse con el organizador. Se recomienda validación legal antes de la publicación definitiva.</div>
+  </div>
+</section>
+
+<main>
+<div class="wrap">
+
+  <div class="art">
+    <h2><span class="n">1.</span> Organizador</h2>
+    <p>La promoción <b>"Copa Mar del Plata 2026"</b> (en adelante, la "Copa" o la "Promoción") es organizada por <span class="ph">[Razón social del titular de Frank's]</span>, CUIT <span class="ph">[XX-XXXXXXXX-X]</span>, con domicilio en <span class="ph">[domicilio comercial]</span>, Mar del Plata, Provincia de Buenos Aires (en adelante, "Frank's" o el "Organizador").</p>
+  </div>
+
+  <div class="art">
+    <h2><span class="n">2.</span> Vigencia y ámbito</h2>
+    <p>La Copa se desarrolla en la ciudad de <b>Mar del Plata</b> y comienza el <b>21 de septiembre de 2026</b>, extendiéndose por el término de <b>un (1) mes</b>, finalizando el <span class="ph">[fecha de cierre — a confirmar]</span> a las 23:59 hs.</p>
+    <p>Solo suman para la Promoción los consumos realizados en los locales Frank's participantes dentro del período de vigencia. El Organizador podrá suspender, prorrogar o modificar estas fechas por causas de fuerza mayor, comunicándolo por sus canales oficiales.</p>
+  </div>
+
+  <div class="art">
+    <h2><span class="n">3.</span> Quiénes pueden participar</h2>
+    <p>Pueden participar los cursos de <b>establecimientos educativos secundarios de Mar del Plata</b>, representados por sus alumnos. La competencia está orientada principalmente a los cursos de <b>6º año</b> con vistas a su fiesta de egresados, sin perjuicio de que otros años sumen puntos a favor de su colegio.</p>
+    <p>Los menores de 18 años participan con conocimiento y autorización de sus padres, madres o responsables legales. El Organizador podrá solicitar dicha autorización para la entrega de premios.</p>
+  </div>
+
+  <div class="art">
+    <h2><span class="n">4.</span> Inscripción</h2>
+    <p>Cada colegio se inscribe a través de un <b>capitán</b> (alumno responsable) que completa el formulario disponible en el sitio oficial con: nombre del colegio, nombre del capitán, división/año, celular y correo electrónico.</p>
+    <p>Una vez validada la inscripción, el Organizador confirma la participación y asigna al colegio un código identificatorio para acreditar los consumos.</p>
+    <h3>Bonus de bienvenida</h3>
+    <p>Los colegios que se inscriban <b>antes del 27 de septiembre de 2026</b> reciben <b>25 puntos extra</b> por bienvenida, que se acreditan por única vez al confirmarse la inscripción.</p>
+  </div>
+
+  <div class="art">
+    <h2><span class="n">5.</span> Mecánica y sistema de puntuación</h2>
+    <p>Durante la vigencia, cada consumo en Frank's acreditado a un colegio suma puntos para la tabla. Para acreditar, el participante debe <b>informar al cajero qué colegio representa</b> al momento de la compra. Los puntos se cargan sobre el ticket correspondiente.</p>
+    <h3>Consumo base</h3>
+    <table class="pts">
+      <thead><tr><th>Concepto</th><th>Puntos</th></tr></thead>
+      <tbody>
+        <tr><td>Inscripción del colegio (bonus de arranque)</td><td>50</td></tr>
+        <tr><td>Pancho Party</td><td>20</td></tr>
+        <tr><td>Promo (no aplica a promos de mediodía)</td><td>15</td></tr>
+        <tr><td>Pancho simple</td><td>10</td></tr>
+      </tbody>
+    </table>
+    <h3>Jugadas extra</h3>
+    <table class="pts">
+      <thead><tr><th>Jugada</th><th>Puntos</th></tr></thead>
+      <tbody>
+        <tr><td><b>El ticket del profe</b> — un profesor o preceptor consume acreditando al colegio</td><td>+30</td></tr>
+        <tr><td><b>Foto grupal</b> — mínimo 8 alumnos en el local, foto en stories etiquetando a la marca</td><td>+30</td></tr>
+        <tr><td><b>Hinchada secundaria</b> — alumnos de 1º a 5º que consuman y asignen su ticket al 6º</td><td>+10</td></tr>
+        <tr><td><b>Happy Hour de puntos</b> — en horarios/días específicos, el consumo duplica o triplica su valor</td><td>2x · 3x</td></tr>
+        <tr><td><b>El Clásico</b> — segunda etapa, duelos entre colegios (se comunica durante la Copa)</td><td>Extra</td></tr>
+      </tbody>
+    </table>
+    <p>El Organizador podrá activar promociones relámpago y jornadas de puntaje especial, comunicándolas por sus canales oficiales. La validación final de los puntos queda a cargo del Organizador.</p>
+  </div>
+
+  <div class="art">
+    <h2><span class="n">6.</span> Ranking</h2>
+    <p>El ranking de colegios se actualiza durante la Promoción y puede consultarse en el sitio oficial. Los valores publicados tienen carácter informativo; ante cualquier diferencia, prevalecen los registros del Organizador.</p>
+  </div>
+
+  <div class="art">
+    <h2><span class="n">7.</span> Premios</h2>
+    <p>Al finalizar la Copa, los tres colegios con mayor puntaje obtienen:</p>
+    <ul>
+      <li><b>1º puesto — La Barra Móvil:</b> servicio de barra móvil con aderezos y 120 panchos incluidos para la fiesta de egresados. En caso de requerir más unidades, se aplica un precio especial por unidad extra.</li>
+      <li><b>2º puesto — Pancho Party:</b> 5 cajas "Pancho Party" (120 panchos en total) para la juntada del curso.</li>
+      <li><b>3º puesto — 20% OFF en noviembre:</b> un voucher individual para cada alumno del curso con 20% de descuento en toda la carta durante el mes de noviembre de 2026.</li>
+    </ul>
+    <p>Los premios son personales, no comercializables y no canjeables por dinero. La coordinación de fecha, lugar y logística de entrega se acuerda con el Organizador dentro de los <span class="ph">[X días]</span> posteriores a la finalización. El servicio de barra móvil se presta dentro del ejido de Mar del Plata; traslados fuera de la zona podrán tener un costo adicional a coordinar.</p>
+  </div>
+
+  <div class="art">
+    <h2><span class="n">8.</span> Desempate</h2>
+    <p>En caso de empate en puntos entre dos o más colegios, se define a favor del colegio que haya <b>alcanzado ese puntaje primero</b> (según registros del Organizador). De persistir el empate, el Organizador podrá disponer un criterio adicional que comunicará a los involucrados.</p>
+  </div>
+
+  <div class="art">
+    <h2><span class="n">9.</span> Uso de imagen y redes sociales</h2>
+    <p>Al participar en dinámicas que involucran contenido en redes (por ejemplo, "Foto grupal"), los participantes autorizan a Frank's a repostear y difundir dicho material en sus canales oficiales, sin fines comerciales ajenos a la Promoción y sin generar derecho a compensación. Los menores participan con autorización de sus responsables.</p>
+  </div>
+
+  <div class="art">
+    <h2><span class="n">10.</span> Datos personales</h2>
+    <p>Los datos brindados en la inscripción serán tratados por el Organizador con la única finalidad de gestionar la Promoción y contactar a los participantes, conforme a la Ley N° 25.326 de Protección de Datos Personales. El titular de los datos puede ejercer sus derechos de acceso, rectificación y supresión escribiendo a <span class="ph">[correo de contacto]</span>.</p>
+  </div>
+
+  <div class="art">
+    <h2><span class="n">11.</span> Descalificación</h2>
+    <p>El Organizador podrá descalificar, sin previo aviso, a cualquier participante o colegio que incurra en fraude, carga indebida de puntos, uso de tickets falsos, conductas antideportivas o cualquier maniobra que altere el normal desarrollo de la Copa.</p>
+  </div>
+
+  <div class="art">
+    <h2><span class="n">12.</span> Aceptación y modificaciones</h2>
+    <p>La participación en la Copa implica el conocimiento y la aceptación total de estas Bases y Condiciones. El Organizador podrá modificarlas ante circunstancias que lo justifiquen, publicando la versión vigente en el sitio oficial. Para toda controversia serán competentes los tribunales ordinarios de <span class="ph">[Mar del Plata / jurisdicción a confirmar]</span>.</p>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <img class="flogo" src="%%LOGO_CREAM%%" alt="Frank's">
+      <div class="foot-links">
+        <a href="%%COPA_URL%%">Volver a la Copa</a>
+        <a href="%%INST_URL%%">Inicio</a>
+        <a href="https://www.instagram.com/franks.mdp/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Frank's · Copa Mar del Plata 2026</span>
+      <span>Desarrollada por ICM-IA</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('themeBtn');
+    try{var s=localStorage.getItem('franks-theme'); if(s)root.setAttribute('data-theme',s);}catch(e){}
+    btn.addEventListener('click',function(){
+      var cur=root.getAttribute('data-theme');
+      var next=cur==='dark'?'light':(cur==='light'?'dark':(matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark'));
+      root.setAttribute('data-theme',next);
+      try{localStorage.setItem('franks-theme',next);}catch(e){}
+    });
+  })();
+</script>
