@@ -146,7 +146,11 @@
   .copa-band h2{font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:.92;margin:.2em 0 .3em;color:#fff}
   .copa-band h2 .hl{color:var(--red)}
   .copa-band p{margin:0;color:#CFC9BE;max-width:46ch}
-  .trophy{font-size:clamp(3rem,7vw,5.5rem);line-height:1}
+  .trophy{font-size:clamp(3rem,7vw,5.5rem);line-height:1;position:relative;display:inline-block;justify-self:center;transform-origin:50% 85%;animation:trophyFloat 3.4s ease-in-out infinite;will-change:transform}
+  .trophy::before{content:"";position:absolute;left:50%;top:52%;width:120%;height:120%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(243,181,10,.42),rgba(238,49,36,.12) 55%,transparent 72%);z-index:-1;animation:trophyGlow 3.4s ease-in-out infinite;pointer-events:none}
+  @keyframes trophyFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(3deg)}}
+  @keyframes trophyGlow{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(.9)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}}
+  @media (prefers-reduced-motion:reduce){.trophy,.trophy::before{animation:none}}
   .copa-band .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
 
   /* footer */
