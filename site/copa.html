@@ -251,7 +251,7 @@
       <div class="metaline">
         <span><b>1 mes</b> de duración</span>
         <span>Arranca el <b>21 de septiembre</b></span>
-        <span><b>3</b> premios reales</span>
+        <span>Inscripciones hasta el <b>5/10</b></span>
       </div>
     </div>
     <div class="board" aria-label="Ranking de colegios en vivo">
@@ -357,6 +357,7 @@
           <span class="eyebrow">Inscripción del capitán</span>
           <h2>Anotá a tu <span class="hl">colegio</span> en la Copa</h2>
           <p style="margin:.4em 0 0">La Copa es <b style="color:#fff">solo para cursos de 6º año</b>. Anotá tu división.</p>
+          <p style="margin:.5em 0 0;color:#C9C3B8">🗓️ Inscripciones abiertas <b style="color:#fff">hasta el domingo 5/10 inclusive</b>.</p>
           <div class="earlybird" id="earlybird">🎁 <b>Bonus de bienvenida:</b> si anotás a tu curso <b>antes del 27/9</b>, suman <b>25 puntos extra</b>.</div>
           <script>/* El bonus se oferta hasta el 27/9 inclusive; desde el 28/9 (00:00 hora Argentina) se oculta */if(new Date()>=new Date('2026-09-28T03:00:00Z')){var _eb=document.getElementById('earlybird');if(_eb)_eb.style.display='none';}</script>
         </div>
@@ -397,8 +398,21 @@
         <h3>¡Colegio anotado!</h3>
         <p id="okmsg">Ya casi. Te vamos a contactar para confirmar la inscripción.</p>
       </div>
+      <div class="ok" id="cerrada" style="grid-column:1/-1">
+        <div class="big" aria-hidden="true">⏱️</div>
+        <h3>Inscripciones cerradas</h3>
+        <p>Las inscripciones a la Copa cerraron el <b>5/10</b>. ¡Gracias a todos los colegios que se anotaron! Seguí el ranking en vivo más arriba.</p>
+      </div>
     </div>
   </div>
+  <script>
+    /* Inscripciones abiertas hasta el 5/10 inclusive; desde el 6/10 (00:00 hora Argentina) se cierra el formulario */
+    if(new Date() >= new Date('2026-10-06T03:00:00Z')){
+      var _f=document.getElementById('form'); if(_f)_f.style.display='none';
+      var _eb=document.getElementById('earlybird'); if(_eb)_eb.style.display='none';
+      var _c=document.getElementById('cerrada'); if(_c)_c.style.display='block';
+    }
+  </script>
 </section>
 
 <div class="checker" aria-hidden="true"></div>
@@ -493,6 +507,7 @@
     var form=document.getElementById('form'), ok=document.getElementById('ok');
     form.addEventListener('submit',function(e){
       e.preventDefault();
+      if(new Date() >= new Date('2026-10-06T03:00:00Z')){ alert('Las inscripciones cerraron el 5/10. ¡Gracias!'); return; }
       if(!form.checkValidity()){form.reportValidity();return;}
       var col=document.getElementById('colegio').value.trim();
       // La Copa es solo para 6º año: normalizamos la division a "6º ..."
