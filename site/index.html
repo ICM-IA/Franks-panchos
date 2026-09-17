@@ -146,21 +146,26 @@
   .copa-band h2{font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:.92;margin:.2em 0 .3em;color:#fff}
   .copa-band h2 .hl{color:var(--red)}
   .copa-band p{margin:0;color:#CFC9BE;max-width:46ch}
-  .trophy{font-size:clamp(3rem,7vw,5.5rem);line-height:1;position:relative;display:inline-block;justify-self:center;transform-origin:50% 90%;animation:trophyHop 1.9s cubic-bezier(.34,1.56,.64,1) infinite;will-change:transform}
-  .trophy::before{content:"";position:absolute;left:50%;top:52%;width:120%;height:120%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(243,181,10,.5),rgba(238,49,36,.14) 55%,transparent 72%);z-index:-1;animation:trophyGlow 1.9s ease-in-out infinite;pointer-events:none}
-  .trophy::after{content:"✨";position:absolute;top:-2px;right:-8px;font-size:.42em;animation:trophySpark 1.9s ease-in-out infinite;pointer-events:none}
-  @keyframes trophyHop{
+  .trophy{font-size:clamp(3rem,7vw,5.5rem);line-height:1;position:relative;display:inline-block;justify-self:center;transform-origin:50% 90%;animation:trophyIdle 5.5s ease-in-out infinite;will-change:transform}
+  .trophy::before{content:"";position:absolute;left:50%;top:52%;width:120%;height:120%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(243,181,10,.44),rgba(238,49,36,.12) 55%,transparent 72%);z-index:-1;opacity:.5;pointer-events:none}
+  .trophy::after{content:"✨";position:absolute;top:-2px;right:-8px;font-size:.42em;opacity:0;pointer-events:none}
+  /* saltito festivo, disparado a intervalos irregulares desde JS */
+  .trophy.pop{animation:trophyPop 1.2s cubic-bezier(.34,1.56,.64,1)}
+  .trophy.pop::before{animation:trophyGlowPop 1.2s ease-in-out}
+  .trophy.pop::after{animation:trophySpark 1.2s ease-in-out}
+  @keyframes trophyIdle{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-4px) rotate(1.5deg)}}
+  @keyframes trophyPop{
     0%{transform:translateY(0) rotate(0) scale(1,1)}
-    18%{transform:translateY(-22px) rotate(-9deg) scale(.96,1.05)}
-    38%{transform:translateY(-4px) rotate(8deg) scale(1.04,.97)}
-    52%{transform:translateY(-14px) rotate(-5deg) scale(.98,1.03)}
-    70%{transform:translateY(2px) rotate(3deg) scale(1.06,.94)}
-    82%{transform:translateY(-3px) rotate(-1deg) scale(1,1)}
+    16%{transform:translateY(-24px) rotate(-10deg) scale(.95,1.06)}
+    36%{transform:translateY(-3px) rotate(9deg) scale(1.05,.96)}
+    52%{transform:translateY(-13px) rotate(-5deg) scale(.98,1.03)}
+    70%{transform:translateY(2px) rotate(4deg) scale(1.06,.93)}
+    84%{transform:translateY(-2px) rotate(-1deg) scale(1,1)}
     100%{transform:translateY(0) rotate(0) scale(1,1)}
   }
-  @keyframes trophyGlow{0%,100%{opacity:.45;transform:translate(-50%,-50%) scale(.88)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.14)}}
-  @keyframes trophySpark{0%,70%,100%{opacity:0;transform:scale(.4) rotate(0)}12%{opacity:1;transform:scale(1.1) rotate(18deg)}28%{opacity:.85;transform:scale(.9) rotate(-10deg)}}
-  @media (prefers-reduced-motion:reduce){.trophy,.trophy::before,.trophy::after{animation:none}.trophy::after{opacity:0}}
+  @keyframes trophyGlowPop{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(.9)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.16)}}
+  @keyframes trophySpark{0%,70%,100%{opacity:0;transform:scale(.4) rotate(0)}12%{opacity:1;transform:scale(1.1) rotate(18deg)}30%{opacity:.85;transform:scale(.9) rotate(-10deg)}}
+  @media (prefers-reduced-motion:reduce){.trophy,.trophy.pop{animation:none}.trophy::after{content:none}}
   .copa-band .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
 
   /* footer */
@@ -395,5 +400,21 @@
     c.addEventListener('mouseleave',start);
     document.addEventListener('visibilitychange',function(){ document.hidden?stop():start(); });
     if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ start(); }
+  })();
+
+  /* Copa: saltito festivo a intervalos irregulares (sin loop mecanico) */
+  (function(){
+    var t=document.querySelector('.trophy'); if(!t) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var timer=null;
+    t.addEventListener('animationend',function(e){
+      if(e.animationName==='trophyPop') t.classList.remove('pop');
+    });
+    function pop(){ if(!document.hidden){ t.classList.remove('pop'); void t.offsetWidth; t.classList.add('pop'); } }
+    function schedule(){
+      var delay=2600+Math.random()*4600; // 2.6s - 7.2s, siempre distinto
+      timer=setTimeout(function(){ pop(); schedule(); }, delay);
+    }
+    schedule();
   })();
 </script>
