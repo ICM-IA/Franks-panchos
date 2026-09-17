@@ -16,7 +16,8 @@ const HEAD =
   '<!DOCTYPE html>\n' +
   '<meta charset="utf-8">\n' +
   '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
-  '<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n';
+  '<link rel="icon" type="image/png" href="/favicon.png">\n' +
+  '<link rel="apple-touch-icon" href="/favicon.png">\n';
 
 function build(srcFile, outFile, extra) {
   let html = HEAD + fs.readFileSync(dir + '/' + srcFile, 'utf8');
@@ -40,10 +41,10 @@ if (fs.existsSync(path.join(MEDIA, 'hero.mp4'))) {
   console.log('copied hero.mp4', (fs.statSync(path.join(OUT, 'hero.mp4')).size / 1024 / 1024).toFixed(2) + 'MB');
 }
 
-// Favicon (logo Frank's) como archivo real en la raiz del sitio
-if (fs.existsSync(path.join(MEDIA, 'favicon.svg'))) {
-  fs.copyFileSync(path.join(MEDIA, 'favicon.svg'), path.join(OUT, 'favicon.svg'));
-  console.log('copied favicon.svg');
+// Favicon: emblema oficial Frank's (manual de marca) como archivo real en la raiz
+if (fs.existsSync(path.join(MEDIA, 'favicon.png'))) {
+  fs.copyFileSync(path.join(MEDIA, 'favicon.png'), path.join(OUT, 'favicon.png'));
+  console.log('copied favicon.png', (fs.statSync(path.join(OUT, 'favicon.png')).size / 1024).toFixed(0) + 'kb');
 }
 
 // Logo de ICM-IA (footer) como archivo real, referenciado por URL relativa
