@@ -357,7 +357,8 @@
           <span class="eyebrow">Inscripción del capitán</span>
           <h2>Anotá a tu <span class="hl">colegio</span> en la Copa</h2>
           <p style="margin:.4em 0 0">La Copa es <b style="color:#fff">solo para cursos de 6º año</b>. Anotá tu división.</p>
-          <div class="earlybird">🎁 <b>Bonus de bienvenida:</b> si anotás a tu curso <b>antes del 27/9</b>, suman <b>25 puntos extra</b>.</div>
+          <div class="earlybird" id="earlybird">🎁 <b>Bonus de bienvenida:</b> si anotás a tu curso <b>antes del 27/9</b>, suman <b>25 puntos extra</b>.</div>
+          <script>/* El bonus se oferta hasta el 27/9 inclusive; desde el 28/9 (00:00 hora Argentina) se oculta */if(new Date()>=new Date('2026-09-28T03:00:00Z')){var _eb=document.getElementById('earlybird');if(_eb)_eb.style.display='none';}</script>
         </div>
       </div>
       <form id="form" novalidate>
