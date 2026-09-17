@@ -39,9 +39,17 @@ if (fs.existsSync(path.join(MEDIA, 'hero.mp4'))) {
   console.log('copied hero.mp4', (fs.statSync(path.join(OUT, 'hero.mp4')).size / 1024 / 1024).toFixed(2) + 'MB');
 }
 
-build('inst.src.html', 'index.html', { COPA_URL, HERO_VIDEO });
-build('copa.src.html', 'copa.html',  { INST_URL });
-build('bases.src.html', 'bases.html', { INST_URL, COPA_URL });
+// Logo de ICM-IA (footer) como archivo real, referenciado por URL relativa
+let LOGO_ICM = '';
+if (fs.existsSync(path.join(MEDIA, 'icm-ia.png'))) {
+  fs.copyFileSync(path.join(MEDIA, 'icm-ia.png'), path.join(OUT, 'icm-ia.png'));
+  LOGO_ICM = 'icm-ia.png';
+  console.log('copied icm-ia.png', (fs.statSync(path.join(OUT, 'icm-ia.png')).size / 1024).toFixed(0) + 'kb');
+}
+
+build('inst.src.html', 'index.html', { COPA_URL, HERO_VIDEO, LOGO_ICM });
+build('copa.src.html', 'copa.html',  { INST_URL, LOGO_ICM });
+build('bases.src.html', 'bases.html', { INST_URL, COPA_URL, LOGO_ICM });
 build('admin.src.html', 'admin.html', { INST_URL, COPA_URL });
 
 // config.js se copia tal cual (el cliente lo edita con sus datos de Supabase)
