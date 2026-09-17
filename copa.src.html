@@ -177,6 +177,9 @@
   .field label{display:block;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-size:.82rem;color:var(--ink-soft);margin-bottom:6px}
   .field input,.field select{width:100%;padding:13px 14px;border-radius:11px;border:1.5px solid var(--line-strong);background:var(--field);color:var(--ink);font-family:'Barlow',sans-serif;font-size:1rem}
   .field input:focus,.field select:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(238,49,36,.16)}
+  .inpg{position:relative}
+  .inpg .pfx{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-family:'Barlow Condensed',sans-serif;font-weight:900;color:var(--red);font-size:1.05rem;pointer-events:none}
+  .inpg input{padding-left:40px}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   form .btn-red{width:100%;justify-content:center;margin-top:8px;font-size:1.1rem;padding:15px}
   .fineprint{color:var(--muted);font-size:.82rem;margin-top:14px;text-align:center}
@@ -353,6 +356,7 @@
         <div class="rel">
           <span class="eyebrow">Inscripción del capitán</span>
           <h2>Anotá a tu <span class="hl">colegio</span> en la Copa</h2>
+          <p style="margin:.4em 0 0">La Copa es <b style="color:#fff">solo para cursos de 6º año</b>. Anotá tu división.</p>
           <div class="earlybird">🎁 <b>Bonus de bienvenida:</b> si anotás a tu curso <b>antes del 27/9</b>, suman <b>25 puntos extra</b>.</div>
         </div>
       </div>
@@ -367,8 +371,11 @@
             <input id="capitan" name="capitan" type="text" placeholder="Ej. Juan Pérez" required>
           </div>
           <div class="field">
-            <label for="division">División / Año</label>
-            <input id="division" name="division" type="text" placeholder="Ej. 6º A" required>
+            <label for="division">División de 6º año</label>
+            <div class="inpg">
+              <span class="pfx" aria-hidden="true">6º</span>
+              <input id="division" name="division" type="text" placeholder="Ej. A · Economía · única" required>
+            </div>
           </div>
         </div>
         <div class="two">
@@ -487,10 +494,13 @@
       e.preventDefault();
       if(!form.checkValidity()){form.reportValidity();return;}
       var col=document.getElementById('colegio').value.trim();
+      // La Copa es solo para 6º año: normalizamos la division a "6º ..."
+      var rawDiv=document.getElementById('division').value.trim().replace(/^\s*(6\s*(to|º|°|o)?|sexto)\s*(a[nñ]o)?\s*/i,'').trim();
+      var division = rawDiv ? '6º '+rawDiv : '6º año';
       var data={
         nombre: col,
         capitan: document.getElementById('capitan').value.trim(),
-        division: document.getElementById('division').value.trim(),
+        division: division,
         celular: document.getElementById('cel').value.trim(),
         email: document.getElementById('mail').value.trim()
       };
