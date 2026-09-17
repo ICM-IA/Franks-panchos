@@ -103,7 +103,7 @@
   /* ticker */
   .ticker{background:var(--red);color:var(--on-red);overflow:hidden;border-top:3px solid var(--band);border-bottom:3px solid var(--band)}
   .ticker .track{display:flex;gap:44px;white-space:nowrap;padding:11px 0;font-family:'Barlow Condensed',sans-serif;
-    font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:1.05rem;animation:slide 26s linear infinite}
+    font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:1.05rem;animation:slide 16s linear infinite}
   .ticker .track span{display:inline-flex;gap:44px}
   .ticker b{opacity:.6;font-weight:900}
   @keyframes slide{to{transform:translateX(-50%)}}
@@ -206,7 +206,10 @@
     .brand .since{display:none}
     .nav .btn{padding:10px 15px;font-size:.9rem}
     .theme{width:36px;height:36px;margin-left:0}
-    .badge{left:10px;bottom:14px;max-width:calc(100% - 20px)}  /* el cartel del "#" ya no se corta contra el borde del celu */
+    /* cartel del "#" en mobile: sobre la foto, prolijo, sin inclinacion y mas chico */
+    .badge{left:12px;bottom:12px;transform:none;padding:9px 15px;border-radius:12px;max-width:calc(100% - 24px)}
+    .badge b{font-size:.9rem}
+    .badge span{font-size:.74rem}
   }
   @media(max-width:520px){
     .cards{grid-template-columns:1fr}
