@@ -97,6 +97,24 @@
   .mov .p.neg{color:var(--silver)}
   .empty{color:var(--muted);padding:14px 0;font-size:.9rem}
   .cfg-warn{background:rgba(255,75,61,.12);border:1px solid var(--red);color:#ffd9d4;border-radius:12px;padding:14px 16px;margin:16px 0;font-size:.9rem}
+
+  /* inscripciones pendientes */
+  .pend-card{margin:24px 0 4px}
+  .pend-count{display:inline-grid;place-items:center;min-width:26px;height:26px;padding:0 8px;background:var(--red);color:#fff;border-radius:20px;font-size:.92rem;font-weight:900;font-family:'Barlow Condensed',sans-serif;vertical-align:.08em;margin-left:8px}
+  .pend-list{display:grid;gap:12px}
+  .pend{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;background:var(--surface-2);border:1px solid var(--line);border-radius:13px;padding:14px 16px}
+  .pend .nm{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:1.18rem;line-height:1.05}
+  .pend .meta{color:var(--ink-soft);font-size:.88rem;margin-top:2px}
+  .pend .contact{color:var(--muted);font-size:.82rem;margin-top:5px;display:flex;gap:14px;flex-wrap:wrap}
+  .pend .contact a{color:var(--ink-soft);text-decoration:none}
+  .pend .contact a:hover{color:var(--red)}
+  .pend .when{color:var(--muted);font-size:.78rem;margin-top:5px}
+  .pend .act{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+  .badge{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;padding:3px 10px;border-radius:20px;white-space:nowrap}
+  .badge.b75{background:rgba(231,180,59,.16);color:var(--gold);border:1px solid rgba(231,180,59,.5)}
+  .badge.b50{background:rgba(174,178,184,.14);color:var(--silver);border:1px solid rgba(174,178,184,.4)}
+  .pend-empty{color:var(--muted);font-size:.9rem;padding:6px 2px}
+  @media(max-width:520px){.pend{grid-template-columns:1fr}.pend .act{flex-direction:row;align-items:center;justify-content:space-between}}
   @media(max-width:860px){.grid{grid-template-columns:1fr}}
   @media(max-width:520px){.qtys{grid-template-columns:1fr}.row3{grid-template-columns:1fr}.bonus-grid{grid-template-columns:1fr}}
 </style>
@@ -129,6 +147,13 @@
 
 <!-- APP -->
 <main class="wrap" id="appView" hidden>
+  <!-- INSCRIPCIONES PENDIENTES -->
+  <div class="card pend-card" id="pendCard" hidden>
+    <div class="sec-title"><span class="eyebrow">Nuevas inscripciones</span><h2>Colegios por aceptar<span class="pend-count" id="pendCount">0</span></h2></div>
+    <p class="hint">Aceptá para acreditar el bono de inscripción: <b>75 pts</b> si se anotó hasta el 27/9 inclusive, <b>50 pts</b> desde el 28/9.</p>
+    <div id="pendList" class="pend-list"><div class="pend-empty">Cargando…</div></div>
+  </div>
+
   <div class="grid">
     <!-- IZQUIERDA: carga -->
     <div>
@@ -249,8 +274,12 @@
   var appReady=false;
   function initApp(){
     if(appReady) return; appReady=true;
-    cargarColegios(); cargarRanking();
-    setInterval(cargarRanking, 20000);
+    cargarColegios(); cargarRanking(); cargarPendientes();
+    setInterval(function(){ cargarRanking(); cargarPendientes(); }, 20000);
+    $('pendList').addEventListener('click',function(e){
+      var b=e.target.closest('[data-accept]'); if(!b) return;
+      var c=pendMap[b.getAttribute('data-accept')]; if(c) aceptarInscripcion(c,b);
+    });
 
     // steppers
     document.querySelectorAll('[data-step]').forEach(function(btn){
@@ -309,6 +338,58 @@
         var when=new Date(m.created_at).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
         return '<div class="mov"><div><div class="d">'+esc(m.detalle||m.tipo)+'</div><div class="t">'+when+'</div></div><div class="p'+(m.puntos<0?' neg':'')+'">'+(m.puntos>0?'+':'')+fmt(m.puntos)+'</div></div>';
       }).join('');
+    });
+  }
+
+  /* ---------- INSCRIPCIONES PENDIENTES ---------- */
+  // 75 pts hasta el 27/9/2026 inclusive; 50 pts desde el 28/9 (00:00 hora Argentina, UTC-3)
+  var CUTOFF_INSCRIP = new Date('2026-09-28T03:00:00Z');
+  var pendMap = {};
+  function ptsInscripcion(created_at){
+    var d = created_at ? new Date(created_at) : new Date();
+    return d < CUTOFF_INSCRIP ? 75 : 50;
+  }
+  function fichaPend(c){
+    var pts=ptsInscripcion(c.created_at);
+    var when = c.created_at ? new Date(c.created_at).toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'2-digit'}) : '—';
+    var contact=[];
+    if(c.celular) contact.push('<a href="tel:'+esc(c.celular)+'">📱 '+esc(c.celular)+'</a>');
+    if(c.email) contact.push('<a href="mailto:'+esc(c.email)+'">✉️ '+esc(c.email)+'</a>');
+    return '<div class="pend" data-id="'+esc(c.id)+'">'+
+      '<div class="info">'+
+        '<div class="nm">'+esc(c.nombre)+'</div>'+
+        '<div class="meta">'+(c.division?esc(c.division)+' · ':'')+(c.capitan?'Cap. '+esc(c.capitan):'Sin capitán')+'</div>'+
+        (contact.length?'<div class="contact">'+contact.join('')+'</div>':'')+
+        '<div class="when">Se anotó el '+when+'</div>'+
+      '</div>'+
+      '<div class="act">'+
+        '<span class="badge '+(pts===75?'b75':'b50')+'">'+pts+' pts</span>'+
+        '<button class="btn btn-red btn-sm" data-accept="'+esc(c.id)+'">Aceptar +'+pts+'</button>'+
+      '</div>'+
+    '</div>';
+  }
+  function cargarPendientes(){
+    Promise.all([
+      sb.from('colegios').select('id,nombre,division,capitan,celular,email,created_at').order('created_at',{ascending:true}),
+      sb.from('movimientos').select('colegio_id').eq('tipo','inscripcion')
+    ]).then(function(rs){
+      var cr=rs[0], mr=rs[1], card=$('pendCard'); card.hidden=false;
+      if(cr.error || (mr && mr.error)){ $('pendCount').textContent='–'; $('pendList').innerHTML='<div class="pend-empty">No se pudieron cargar las inscripciones.</div>'; return; }
+      var accepted={}; ((mr&&mr.data)||[]).forEach(function(m){ accepted[m.colegio_id]=true; });
+      var pend=(cr.data||[]).filter(function(c){ return !accepted[c.id]; });
+      pendMap={}; pend.forEach(function(c){ pendMap[c.id]=c; });
+      $('pendCount').textContent=pend.length;
+      $('pendList').innerHTML = pend.length ? pend.map(fichaPend).join('') : '<div class="pend-empty">No hay inscripciones pendientes. 👌</div>';
+    });
+  }
+  function aceptarInscripcion(c, btn){
+    var pts=ptsInscripcion(c.created_at);
+    btn.disabled=true; btn.textContent='Aceptando…';
+    sb.from('movimientos').insert({colegio_id:c.id, tipo:'inscripcion', puntos:pts, detalle:'Inscripción aceptada'}).then(function(res){
+      if(res.error){ console.warn(res.error); btn.disabled=false; btn.textContent='Aceptar +'+pts; toast('No se pudo aceptar',true); return; }
+      toast('¡'+c.nombre+' aceptado! +'+pts+' pts');
+      delete pendMap[c.id];
+      cargarPendientes(); cargarRanking();
     });
   }
 
