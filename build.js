@@ -15,7 +15,8 @@ const COPA_URL = process.env.COPA_URL || '/copa.html';
 const HEAD =
   '<!DOCTYPE html>\n' +
   '<meta charset="utf-8">\n' +
-  '<meta name="viewport" content="width=device-width, initial-scale=1">\n';
+  '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+  '<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n';
 
 function build(srcFile, outFile, extra) {
   let html = HEAD + fs.readFileSync(dir + '/' + srcFile, 'utf8');
@@ -37,6 +38,12 @@ if (fs.existsSync(path.join(MEDIA, 'hero.mp4'))) {
   fs.copyFileSync(path.join(MEDIA, 'hero.mp4'), path.join(OUT, 'hero.mp4'));
   HERO_VIDEO = 'hero.mp4';
   console.log('copied hero.mp4', (fs.statSync(path.join(OUT, 'hero.mp4')).size / 1024 / 1024).toFixed(2) + 'MB');
+}
+
+// Favicon (logo Frank's) como archivo real en la raiz del sitio
+if (fs.existsSync(path.join(MEDIA, 'favicon.svg'))) {
+  fs.copyFileSync(path.join(MEDIA, 'favicon.svg'), path.join(OUT, 'favicon.svg'));
+  console.log('copied favicon.svg');
 }
 
 // Logo de ICM-IA (footer) como archivo real, referenciado por URL relativa
