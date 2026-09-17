@@ -11,8 +11,14 @@ fs.mkdirSync(OUT, { recursive: true });
 const INST_URL = process.env.INST_URL || '/';
 const COPA_URL = process.env.COPA_URL || '/copa.html';
 
+// Cabecera mínima: sin esto el celular renderiza a ~980px y encoge todo
+const HEAD =
+  '<!DOCTYPE html>\n' +
+  '<meta charset="utf-8">\n' +
+  '<meta name="viewport" content="width=device-width, initial-scale=1">\n';
+
 function build(srcFile, outFile, extra) {
-  let html = fs.readFileSync(dir + '/' + srcFile, 'utf8');
+  let html = HEAD + fs.readFileSync(dir + '/' + srcFile, 'utf8');
   const map = Object.assign({}, assets, extra);
   for (const k in map) {
     html = html.split('%%' + k + '%%').join(map[k]);

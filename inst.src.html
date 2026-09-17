@@ -192,6 +192,13 @@
     .nav-links{display:none}
     .menu-cta{display:inline-flex}
   }
+  @media(max-width:600px){
+    .nav{gap:10px;height:60px}
+    .nav>.btn-ghost{display:none}      /* Franquicias: redundante en móvil (link + footer) */
+    .brand .since{display:none}
+    .nav .btn{padding:10px 15px;font-size:.9rem}
+    .theme{width:36px;height:36px;margin-left:0}
+  }
   @media(max-width:520px){
     .cards{grid-template-columns:1fr}
     .foot-grid{grid-template-columns:1fr}
