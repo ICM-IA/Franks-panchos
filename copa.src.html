@@ -123,6 +123,7 @@
   .prize h3{margin:.1em 0 .3em;text-transform:uppercase;font-weight:900;font-size:1.7rem;line-height:.98}
   .prize p{margin:0;color:var(--ink-soft);font-size:.98rem}
   .prize .em{font-size:2.4rem;position:absolute;top:20px;right:20px;opacity:.9}
+  .prize-vid{display:block;width:100%;max-width:190px;margin:18px auto 2px;aspect-ratio:9/16;object-fit:cover;border-radius:16px;background:#000;border:1px solid var(--line);box-shadow:0 14px 32px -20px rgba(0,0,0,.65)}
 
   /* puntos */
   .points-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:26px;align-items:start}
@@ -296,12 +297,14 @@
         <span class="medal">🥈 2º Premio</span>
         <h3>Pancho Party</h3>
         <p>5 cajas "Pancho Party" (120 panchos en total) para la juntada de tu promo.</p>
+        <video class="prize-vid" src="%%PREMIO2_VIDEO%%" muted autoplay loop playsinline preload="metadata" aria-label="Video del 2º premio"></video>
         <span class="em" aria-hidden="true">🎉</span>
       </div>
       <div class="prize first">
         <span class="medal">🥇 1º Premio</span>
         <h3>La Barra Móvil</h3>
         <p>Servicio de Barra Móvil con aderezos y 120 panchos incluidos para el evento que organicen. Si son más en el curso, tienen un precio especial por unidad extra.</p>
+        <video class="prize-vid" src="%%PREMIO1_VIDEO%%" muted autoplay loop playsinline preload="metadata" aria-label="Video del 1º premio"></video>
         <span class="em" aria-hidden="true">🚚</span>
       </div>
       <div class="prize third">
