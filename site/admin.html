@@ -163,6 +163,17 @@
     <!-- IZQUIERDA: carga -->
     <div>
       <div class="card" style="margin-bottom:20px">
+        <div class="sec-title"><span class="eyebrow">Cliente</span><h2>¿Quién suma?</h2></div>
+        <div class="row2">
+          <div class="field" style="margin-bottom:0"><label for="cliNom">Nombre del cliente</label><input id="cliNom" type="text" placeholder="Ej. Juan Pérez" autocomplete="off"></div>
+          <div class="field" style="margin-bottom:0"><label for="cliRel">Relación</label>
+            <select id="cliRel"><option value="">—</option><option>Familia</option><option>Alumno</option><option>Hinchada</option><option>Profesor</option></select>
+          </div>
+        </div>
+        <p class="hint">Opcional. Queda registrado en el movimiento para saber quién sumó.</p>
+      </div>
+
+      <div class="card" style="margin-bottom:20px">
         <div class="sec-title"><span class="eyebrow">Paso 1</span><h2>Elegí el colegio</h2></div>
         <div class="row2">
           <div class="field" style="margin-bottom:0"><label for="colSel">Colegio</label><select id="colSel"></select></div>
@@ -401,6 +412,12 @@
     var c=colegioSel();
     if(!c){ toast('Elegí un colegio primero',true); return; }
     mov.colegio_id=c.id;
+    // Cliente + relación (opcional): se guarda en el detalle del movimiento
+    var nom=($('cliNom').value||'').trim(), rel=$('cliRel').value||'';
+    if(nom||rel){
+      var etq = (nom||'Cliente') + (rel?' ('+rel+')':'');
+      mov.detalle = etq + (mov.detalle?' · '+mov.detalle:'');
+    }
     sb.from('movimientos').insert(mov).then(function(res){
       if(res.error){ console.warn(res.error); toast('No se pudo cargar',true); return; }
       toast(okMsg); cargarRanking(); cargarMovs();
@@ -415,6 +432,7 @@
     var det=partes.join(' + ')+(m>1?' ('+m+'x Happy Hour)':'');
     insertar({tipo:'consumo',puntos:total*m,detalle:det}, '+'+fmt(total*m)+' pts acreditados');
     qty={pancho:0,promo:0,party:0}; $('q_pancho').textContent='0'; $('q_promo').textContent='0'; $('q_party').textContent='0'; recalc();
+    $('cliNom').value=''; $('cliRel').value='';
   }
 
   function cargarBonus(tipo,pts,label){
