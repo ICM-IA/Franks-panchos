@@ -154,7 +154,7 @@
 <main class="wrap" id="appView" hidden>
   <!-- INSCRIPCIONES PENDIENTES -->
   <div class="card pend-card" id="pendCard" hidden>
-    <div class="sec-title"><span class="eyebrow">Nuevas inscripciones</span><h2>Colegios por aceptar<span class="pend-count" id="pendCount">0</span></h2></div>
+    <div class="sec-title"><span class="eyebrow">Nuevas inscripciones</span><h2>Cursos por aceptar<span class="pend-count" id="pendCount">0</span></h2></div>
     <p class="hint">Aceptá para acreditar el bono de inscripción: <b>75 pts</b> si se anotó hasta el 27/9 inclusive, <b>50 pts</b> desde el 28/9.</p>
     <div id="pendList" class="pend-list"><div class="pend-empty">Cargando…</div></div>
   </div>
@@ -174,9 +174,9 @@
       </div>
 
       <div class="card" style="margin-bottom:20px">
-        <div class="sec-title"><span class="eyebrow">Paso 1</span><h2>Elegí el colegio</h2></div>
+        <div class="sec-title"><span class="eyebrow">Paso 1</span><h2>Elegí el curso</h2></div>
         <div class="row2">
-          <div class="field" style="margin-bottom:0"><label for="colSel">Colegio</label><select id="colSel"></select></div>
+          <div class="field" style="margin-bottom:0"><label for="colSel">Curso</label><select id="colSel"></select></div>
           <div class="field" style="margin-bottom:0"><label for="mult">Happy Hour</label>
             <select id="mult"><option value="1">Normal (1x)</option><option value="2">Doble (2x)</option><option value="3">Triple (3x)</option></select>
           </div>
@@ -198,12 +198,12 @@
           </div>
         </div>
         <div class="total"><span class="lbl">Total a acreditar</span><span class="val" id="totalPts">0</span></div>
-        <button class="btn btn-red" style="width:100%" id="creditBtn">Acreditar puntos al colegio</button>
+        <button class="btn btn-red" style="width:100%" id="creditBtn">Acreditar puntos al curso</button>
       </div>
 
       <div class="card">
         <div class="sec-title"><span class="eyebrow">Paso 2 (o)</span><h2>Bonus rápidos</h2></div>
-        <p class="hint">Jugadas extra. Se acreditan al colegio elegido arriba (aplican Happy Hour).</p>
+        <p class="hint">Jugadas extra. Se acreditan al curso elegido arriba (aplican Happy Hour).</p>
         <div class="bonus-grid">
           <button class="bonus" data-bonus="ticket_profe" data-pts="30"><span class="bn">Ticket del profe</span><span class="bp">+30</span></button>
           <button class="bonus" data-bonus="hinchada" data-pts="10"><span class="bn">Hinchada secundaria</span><span class="bp">+10</span></button>
@@ -229,7 +229,7 @@
       </div>
       <div class="card">
         <div class="sec-title"><span class="eyebrow">Historial</span><h2>Últimos movimientos</h2></div>
-        <p class="hint" id="movHint">Del colegio seleccionado.</p>
+        <p class="hint" id="movHint">Del curso seleccionado.</p>
         <div id="movList"><div class="empty">—</div></div>
       </div>
     </div>
@@ -323,7 +323,7 @@
       var s=$('colSel');
       if(res.error){ s.innerHTML='<option value="">Error al cargar</option>'; return; }
       var rows=res.data||[];
-      if(!rows.length){ s.innerHTML='<option value="">— No hay colegios inscriptos —</option>'; return; }
+      if(!rows.length){ s.innerHTML='<option value="">— No hay cursos inscriptos —</option>'; return; }
       s.innerHTML=rows.map(function(r){return '<option value="'+r.id+'">'+esc(r.nombre)+(r.division?' · '+esc(r.division):'')+'</option>';}).join('');
       cargarMovs();
     });
@@ -334,7 +334,7 @@
       var b=$('rankBody');
       if(res.error){ b.innerHTML='<tr><td class="empty">Error</td></tr>'; return; }
       var rows=res.data||[];
-      if(!rows.length){ b.innerHTML='<tr><td class="empty">Todavía no hay colegios.</td></tr>'; return; }
+      if(!rows.length){ b.innerHTML='<tr><td class="empty">Todavía no hay cursos.</td></tr>'; return; }
       b.innerHTML=rows.map(function(r,i){
         var cls=i===0?'p1':(i===1?'p2':(i===2?'p3':''));
         return '<tr'+(cls?' class="'+cls+'"':'')+'><td class="pos">'+(i+1)+'</td><td><div class="cn">'+esc(r.nombre)+'</div><div class="dv">'+esc(r.division||'')+'</div></td><td class="pt">'+fmt(r.puntos)+'</td></tr>';
@@ -344,7 +344,7 @@
 
   function cargarMovs(){
     var c=colegioSel(); var box=$('movList');
-    if(!c){ box.innerHTML='<div class="empty">Elegí un colegio.</div>'; return; }
+    if(!c){ box.innerHTML='<div class="empty">Elegí un curso.</div>'; return; }
     sb.from('movimientos').select('tipo,puntos,detalle,created_at').eq('colegio_id',c.id).order('created_at',{ascending:false}).limit(12).then(function(res){
       if(res.error){ box.innerHTML='<div class="empty">Error</div>'; return; }
       var rows=res.data||[];
@@ -410,7 +410,7 @@
 
   function insertar(mov, okMsg){
     var c=colegioSel();
-    if(!c){ toast('Elegí un colegio primero',true); return; }
+    if(!c){ toast('Elegí un curso primero',true); return; }
     mov.colegio_id=c.id;
     // Cliente + relación (opcional): se guarda en el detalle del movimiento
     var nom=($('cliNom').value||'').trim(), rel=$('cliRel').value||'';
