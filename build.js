@@ -53,6 +53,12 @@ if (fs.existsSync(path.join(MEDIA, 'premio2.mp4'))) {
   PREMIO2_VIDEO = 'premio2.mp4';
   console.log('copied premio2.mp4', (fs.statSync(path.join(OUT, 'premio2.mp4')).size / 1024 / 1024).toFixed(2) + 'MB');
 }
+let PREMIO3_VIDEO = '';
+if (fs.existsSync(path.join(MEDIA, 'premio3.mp4'))) {
+  fs.copyFileSync(path.join(MEDIA, 'premio3.mp4'), path.join(OUT, 'premio3.mp4'));
+  PREMIO3_VIDEO = 'premio3.mp4';
+  console.log('copied premio3.mp4', (fs.statSync(path.join(OUT, 'premio3.mp4')).size / 1024 / 1024).toFixed(2) + 'MB');
+}
 
 // Favicon: emblema oficial Frank's (manual de marca) como archivo real en la raiz
 if (fs.existsSync(path.join(MEDIA, 'favicon.png'))) {
@@ -69,7 +75,7 @@ if (fs.existsSync(path.join(MEDIA, 'icm-ia.png'))) {
 }
 
 build('inst.src.html', 'index.html', { COPA_URL, HERO_VIDEO, LOGO_ICM });
-build('copa.src.html', 'copa.html',  { INST_URL, LOGO_ICM, PREMIO1_VIDEO, PREMIO2_VIDEO });
+build('copa.src.html', 'copa.html',  { INST_URL, LOGO_ICM, PREMIO1_VIDEO, PREMIO2_VIDEO, PREMIO3_VIDEO });
 build('bases.src.html', 'bases.html', { INST_URL, COPA_URL, LOGO_ICM });
 build('admin.src.html', 'admin.html', { INST_URL, COPA_URL });
 
