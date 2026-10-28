@@ -124,6 +124,13 @@
   .prize p{margin:0;color:var(--ink-soft);font-size:.98rem}
   .prize .em{font-size:2.4rem;position:absolute;top:20px;right:20px;opacity:.9}
   .prize-vid{display:block;width:100%;max-width:190px;margin:18px auto 2px;aspect-ratio:9/16;object-fit:cover;border-radius:16px;background:#000;border:1px solid var(--line);box-shadow:0 14px 32px -20px rgba(0,0,0,.65)}
+  /* tarjetas de ganadores (podio final) */
+  .prize .win-pts{font-family:'Barlow Condensed',sans-serif;font-weight:900;color:var(--red);font-size:2.7rem;line-height:.9;margin:4px 0 4px;font-variant-numeric:tabular-nums}
+  .prize .win-pts small{font-size:.9rem;color:var(--muted);font-weight:800;margin-left:5px}
+  .prize .win-div{color:var(--muted);font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-weight:700;font-size:1rem;margin:0 0 16px}
+  .prize .win-prize{margin:0;padding-top:14px;border-top:1px solid var(--line);color:var(--ink);font-size:1.02rem}
+  .prize .win-prize b{color:var(--red)}
+  .prize.first .win-pts{font-size:3.2rem}
 
   /* puntos */
   .points-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:26px;align-items:start}
@@ -238,7 +245,7 @@
     <nav class="nav-links">
       <a href="#premios">Premios</a>
       <a href="#puntos">Puntos</a>
-      <a href="#ranking">Ranking</a>
+      <a href="#ganadores">Ganadores</a>
       <a href="%%INST_URL%%">← Frank's</a>
     </nav>
     <a class="btn btn-red" href="#inscripcion">Inscribir curso</a>
@@ -263,12 +270,14 @@
         <span>Inscripciones hasta el <b>5/10</b></span>
       </div>
     </div>
-    <div class="board" aria-label="Ranking de cursos en vivo">
-      <div class="bh"><span>Ranking de cursos</span><span class="live"><span class="dot"></span>En vivo</span></div>
+    <div class="board" aria-label="Podio final de la Copa">
+      <div class="bh"><span>Podio final</span><span class="live" style="color:var(--gold)"><span class="dot" style="background:var(--gold);animation:none;box-shadow:none"></span>Final</span></div>
       <ol id="boardList">
-        <li><span class="rk">–</span><span class="cn">Cargando ranking…</span><span class="pt">—</span></li>
+        <li class="top"><span class="rk">1</span><span class="cn">Mariano Moreno · 6º 4 Sociales</span><span class="pt">575<small>pts</small></span></li>
+        <li><span class="rk">2</span><span class="cn">El Libertador · 6º único</span><span class="pt">375<small>pts</small></span></li>
+        <li><span class="rk">3</span><span class="cn">Ortega y Gasset · 6º A</span><span class="pt">190<small>pts</small></span></li>
       </ol>
-      <div class="cap">El ranking se actualiza en vivo durante la Copa.</div>
+      <div class="cap">🏆 ¡La Copa Mar del Plata 2026 ya tiene ganadores!</div>
     </div>
   </div>
 </section>
@@ -346,17 +355,34 @@
   </div>
 </section>
 
-<!-- RANKING -->
-<section id="ranking" style="background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+<!-- GANADORES -->
+<section id="ganadores" style="background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
-    <div class="kicker-row"><span class="num">04</span><h2>Ranking en vivo</h2></div>
-    <span class="rank-note"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block"></span> Actualizado en vivo durante la competencia</span>
-    <table class="rank">
-      <thead><tr><th>#</th><th>Curso</th><th style="text-align:right">Puntos</th></tr></thead>
-      <tbody id="rankBody">
-        <tr><td class="pos">–</td><td><div class="col">Cargando ranking…</div></td><td class="pts">—</td></tr>
-      </tbody>
-    </table>
+    <div class="kicker-row"><span class="num">04</span><h2>Ganadores</h2></div>
+    <p class="lead-sub">Un mes de panchos, hinchada y aguante. Estos son los tres cursos que más puntos sumaron y se llevan los premios de la Copa Mar del Plata 2026. ¡Gracias a todos los que jugaron! 🌭</p>
+    <div class="podium">
+      <div class="prize second">
+        <span class="medal">🥈 2º Puesto</span>
+        <div class="win-pts">375<small>pts</small></div>
+        <h3>El Libertador</h3>
+        <p class="win-div">6º único</p>
+        <p class="win-prize">🎉 Ganan la <b>Pancho Party</b></p>
+      </div>
+      <div class="prize first">
+        <span class="medal">🥇 1º Puesto</span>
+        <div class="win-pts">575<small>pts</small></div>
+        <h3>Mariano Moreno</h3>
+        <p class="win-div">6º 4 Sociales</p>
+        <p class="win-prize">🚚 Ganan <b>La Barra Móvil</b></p>
+      </div>
+      <div class="prize third">
+        <span class="medal">🥉 3º Puesto</span>
+        <div class="win-pts">190<small>pts</small></div>
+        <h3>Ortega y Gasset</h3>
+        <p class="win-div">6º A</p>
+        <p class="win-prize">🎟️ Ganan el <b>20% OFF en Noviembre</b></p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -413,7 +439,7 @@
       <div class="ok" id="cerrada" style="grid-column:1/-1">
         <div class="big" aria-hidden="true">⏱️</div>
         <h3>Inscripciones cerradas</h3>
-        <p>Las inscripciones a la Copa cerraron el <b>5/10</b>. ¡Gracias a todos los cursos que se anotaron! Seguí el ranking en vivo más arriba.</p>
+        <p>La Copa Mar del Plata 2026 terminó. ¡Gracias a todos los cursos que se anotaron y jugaron! Mirá a los cursos ganadores más arriba. 🏆</p>
       </div>
     </div>
   </div>
@@ -441,7 +467,7 @@
         <div class="foot-h">La Copa</div>
         <a class="fl" href="#premios">Premios</a>
         <a class="fl" href="#puntos">Cómo sumar puntos</a>
-        <a class="fl" href="#ranking">Ranking</a>
+        <a class="fl" href="#ganadores">Ganadores</a>
         <a class="fl" href="#inscripcion">Inscribir curso</a>
         <a class="fl" href="/bases">Bases y condiciones</a>
       </div>
@@ -459,8 +485,6 @@
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script src="config.js"></script>
 <script>
   (function(){
     /* ---- tema ---- */
@@ -471,87 +495,6 @@
       var next=cur==='dark'?'light':(cur==='light'?'dark':(matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark'));
       root.setAttribute('data-theme',next);
       try{localStorage.setItem('franks-theme',next);}catch(e){}
-    });
-
-    /* ---- Supabase ---- */
-    var cfg=window.FRANKS_CONFIG||{};
-    var sb=null;
-    if(window.supabase && cfg.SUPABASE_URL && cfg.SUPABASE_URL.indexOf('http')===0){
-      sb=window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
-    }
-
-    var fmt=function(n){return (n||0).toLocaleString('es-AR');};
-
-    /* ---- ranking en vivo ---- */
-    function pintarRanking(rows){
-      var board=document.getElementById('boardList');
-      var body=document.getElementById('rankBody');
-      if(!rows || !rows.length){
-        if(board) board.innerHTML='<li><span class="rk">–</span><span class="cn">Todavía no hay cursos anotados</span><span class="pt">—</span></li>';
-        if(body) body.innerHTML='<tr><td class="pos">–</td><td><div class="col">Todavía no hay cursos anotados</div><div class="div">¡Anotá el tuyo abajo y arrancá a sumar!</div></td><td class="pts">0</td></tr>';
-        return;
-      }
-      if(board){
-        board.innerHTML=rows.slice(0,5).map(function(r,i){
-          return '<li'+(i===0?' class="top"':'')+'><span class="rk">'+(i+1)+'</span><span class="cn">'+esc(r.nombre)+(r.division?' · '+esc(r.division):'')+'</span><span class="pt">'+fmt(r.puntos)+'<small>pts</small></span></li>';
-        }).join('');
-      }
-      if(body){
-        body.innerHTML=rows.map(function(r,i){
-          var cls=i===0?'p1':(i===1?'p2':(i===2?'p3':''));
-          return '<tr'+(cls?' class="'+cls+'"':'')+'><td class="pos">'+(i+1)+'</td><td><div class="col">'+esc(r.nombre)+'</div><div class="div">'+esc(r.division||'')+'</div></td><td class="pts">'+fmt(r.puntos)+'</td></tr>';
-        }).join('');
-      }
-    }
-    function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-
-    function cargarRanking(){
-      if(!sb) return;
-      sb.from('ranking').select('nombre,division,puntos').order('puntos',{ascending:false}).then(function(res){
-        if(res.error){console.warn('ranking',res.error);return;}
-        pintarRanking(res.data||[]);
-      });
-    }
-    cargarRanking();
-    if(sb) setInterval(cargarRanking, 20000); // refresca cada 20s
-
-    /* ---- inscripción real ---- */
-    var form=document.getElementById('form'), ok=document.getElementById('ok');
-    form.addEventListener('submit',function(e){
-      e.preventDefault();
-      if(new Date() >= new Date('2026-10-06T03:00:00Z')){ alert('Las inscripciones cerraron el 5/10. ¡Gracias!'); return; }
-      if(!form.checkValidity()){form.reportValidity();return;}
-      var col=document.getElementById('colegio').value.trim();
-      // La Copa es solo para 6º año: normalizamos la division a "6º ..."
-      var rawDiv=document.getElementById('division').value.trim().replace(/^\s*(6\s*(to|º|°|o)?|sexto)\s*(a[nñ]o)?\s*/i,'').trim();
-      var division = rawDiv ? '6º '+rawDiv : '6º año';
-      var data={
-        nombre: col,
-        capitan: document.getElementById('capitan').value.trim(),
-        division: division,
-        celular: document.getElementById('cel').value.trim(),
-        email: document.getElementById('mail').value.trim()
-      };
-      var submitBtn=form.querySelector('button[type=submit]');
-      submitBtn.disabled=true; submitBtn.textContent='Anotando…';
-
-      function exito(){
-        document.getElementById('okmsg').textContent='¡'+col+' quedó anotado en la Copa! Ya aparece en el ranking. Cada consumo acreditado va a sumar puntos.';
-        form.style.display='none'; ok.style.display='block';
-        cargarRanking();
-      }
-      function error(msg){
-        submitBtn.disabled=false; submitBtn.textContent='Inscribir mi curso';
-        alert(msg||'No pudimos anotar el curso. Probá de nuevo en un ratito.');
-      }
-
-      if(!sb){ // sin conexión configurada todavía
-        exito(); return;
-      }
-      sb.from('colegios').insert(data).then(function(res){
-        if(res.error){console.warn('insert',res.error);error();return;}
-        exito();
-      });
     });
   })();
 </script>
