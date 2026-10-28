@@ -94,6 +94,8 @@
   .board .rk{font-family:'Barlow Condensed',sans-serif;font-weight:900;color:#6f6a61;font-size:1.05rem;text-align:center}
   .board li.top .rk{color:var(--gold)}
   .board .cn{color:#EDE8DE;font-weight:600}
+  .board .cn .pz{display:block;color:var(--gold);font-weight:700;font-size:.76rem;margin-top:3px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+  .board li:not(.top) .cn .pz{color:#9a948a}
   .board .pt{font-family:'Barlow Condensed',sans-serif;font-weight:900;color:#fff;font-size:1.15rem;font-variant-numeric:tabular-nums}
   .board .pt small{color:#8C877D;font-weight:700;font-size:.7rem;margin-left:3px}
   .board .cap{color:#6f6a61;font-size:.72rem;text-align:center;padding:10px 4px 2px;font-family:'Barlow',sans-serif}
@@ -271,11 +273,11 @@
       </div>
     </div>
     <div class="board" aria-label="Podio final de la Copa">
-      <div class="bh"><span>Podio final</span><span class="live" style="color:var(--gold)"><span class="dot" style="background:var(--gold);animation:none;box-shadow:none"></span>Final</span></div>
+      <div class="bh"><span>Ganadores</span><span class="live" style="color:var(--gold)"><span class="dot" style="background:var(--gold);animation:none;box-shadow:none"></span>Final</span></div>
       <ol id="boardList">
-        <li class="top"><span class="rk">1</span><span class="cn">Mariano Moreno · 6º 4 Sociales</span><span class="pt">575<small>pts</small></span></li>
-        <li><span class="rk">2</span><span class="cn">El Libertador · 6º único</span><span class="pt">375<small>pts</small></span></li>
-        <li><span class="rk">3</span><span class="cn">Ortega y Gasset · 6º A</span><span class="pt">190<small>pts</small></span></li>
+        <li class="top"><span class="rk">1</span><span class="cn">Mariano Moreno · 6º 4 Sociales<small class="pz">🚚 Barra Móvil</small></span><span class="pt">575<small>pts</small></span></li>
+        <li><span class="rk">2</span><span class="cn">El Libertador · 6º único<small class="pz">🎉 Pancho Party</small></span><span class="pt">375<small>pts</small></span></li>
+        <li><span class="rk">3</span><span class="cn">Ortega y Gasset · 6º A<small class="pz">🎟️ 20% OFF Noviembre</small></span><span class="pt">190<small>pts</small></span></li>
       </ol>
       <div class="cap">🏆 ¡La Copa Mar del Plata 2026 ya tiene ganadores!</div>
     </div>
